@@ -8,7 +8,7 @@ vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 -- except for the current line it whill show the actual line number
 -- to move up and down number of lines you can use `<number>j` and `<number>k`
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = "a"

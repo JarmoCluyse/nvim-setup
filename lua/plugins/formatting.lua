@@ -19,6 +19,7 @@ return { -- formatting plugins
         graphql = { "prettier" },
         liquid = { "prettier" },
         lua = { "stylua" },
+        ["*"] = { "codespell" },
       },
       -- NOTE: format will execute on save
       format_on_save = {

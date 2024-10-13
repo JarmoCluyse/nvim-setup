@@ -1,5 +1,8 @@
 -- [[ Appearance ]]
 return {
+  {
+    "DaikyXendo/nvim-material-icon",
+  },
   { -- INFO: Material theme
     "marko-cerovac/material.nvim",
     init = function()
@@ -15,5 +18,9 @@ return {
     event = "VimEnter",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = { signs = false },
+  },
+  { -- INFO: boards for telescope
+    "stevearc/dressing.nvim",
+    event = "VeryLazy",
   },
 }
