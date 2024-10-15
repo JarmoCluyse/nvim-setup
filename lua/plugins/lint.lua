@@ -4,7 +4,7 @@ return {
     "mfussenegger/nvim-lint",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-      local lint = require "lint"
+      local lint = require("lint")
       lint.linters_by_ft = {
         markdown = { "markdownlint" },
       }
@@ -48,6 +48,9 @@ return {
         group = lint_augroup,
         callback = function()
           lint.try_lint()
+          -- You can call `try_lint` with a linter name or a list of names to always
+          -- run specific linters, independent of the `linters_by_ft` configuration
+          require("lint").try_lint("cspell")
         end,
       })
     end,
