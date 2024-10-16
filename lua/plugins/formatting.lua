@@ -1,9 +1,8 @@
 return { -- formatting plugins
-  "stevearc/conform.nvim",
+  "stevearc/conform.nvim", -- cspell:disable-line
   event = { "BufReadPre", "BufNewFile" },
   config = function()
     local conform = require("conform")
-
     conform.setup({
       formatters_by_ft = {
         javascript = { "prettier" },
@@ -19,7 +18,7 @@ return { -- formatting plugins
         graphql = { "prettier" },
         liquid = { "prettier" },
         lua = { "stylua" },
-        ["*"] = { "codespell" },
+        ["*"] = { "cspell", "codespell" },
       },
       -- NOTE: format will execute on save
       format_on_save = {
@@ -35,6 +34,8 @@ return { -- formatting plugins
         async = false,
         timeout_ms = 1000,
       })
+
+      require("lint").try_lint("cspell")
     end, { desc = "Format file or range (in visual mode)" })
   end,
 }

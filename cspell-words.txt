@@ -1,0 +1,12 @@
+# project specific words
+autopairs
+nvim
+neovim
+stdpath
+mapleader
+maplocalleader
+nerdfont
+keymappings
+keymap
+keymaps
+codespell

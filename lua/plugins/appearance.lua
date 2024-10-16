@@ -1,26 +1,22 @@
--- [[ Appearance ]]
+-- NOTE: [[ Editor appearance ]]
+
 return {
-  {
-    "DaikyXendo/nvim-material-icon",
-  },
   { -- INFO: Material theme
-    "marko-cerovac/material.nvim",
+    "marko-cerovac/material.nvim", -- cspell:disable-line
+
     init = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
       vim.cmd.colorscheme("material")
-      vim.g.material_style = "Ocianic"
+      vim.g.material_style = "Ocianic" -- cspell:disable-line
     end,
   },
   { -- INFO: Highlight todo, notes, etc in comments
-    "folke/todo-comments.nvim",
+    "folke/todo-comments.nvim", -- cspell:disable-line
     event = "VimEnter",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = { signs = false },
   },
   { -- INFO: boards for telescope
-    "stevearc/dressing.nvim",
+    "stevearc/dressing.nvim", -- cspell:disable-line
     event = "VeryLazy",
   },
 }
