@@ -3,19 +3,19 @@
 -- cspell:ignore luasnip
 
 return {
-  { -- Autocompletion
+  { -- INFO: Autocompletion
     "hrsh7th/nvim-cmp", -- cspell:disable-line
     event = "InsertEnter",
     dependencies = {
-      {
+      { -- INFO: snippets
         "L3MON4D3/LuaSnip",
         dependencies = {
           "rafamadriz/friendly-snippets", -- cspell:disable-line
           "saadparwaiz1/cmp_luasnip", -- cspell:disable-line
         },
       },
-      "hrsh7th/cmp-nvim-lsp", -- cspell:disable-line
-      "hrsh7th/cmp-path", -- cspell:disable-line
+      "hrsh7th/cmp-nvim-lsp", -- cspell:disable-line INFO: add LSP capabilities to autocomplete
+      "hrsh7th/cmp-path", -- cspell:disable-line INFO: add path completion
     },
     config = function()
       local cmp = require("cmp")

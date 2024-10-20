@@ -1,3 +1,7 @@
+-- NOTE: [[]]
+
+-- cspell:ignore lazydev luvit dependants lsp lspconfig folke lazydev autocmd autocmds augroup
+
 return {
   {
     "folke/lazydev.nvim",
@@ -9,18 +13,18 @@ return {
     },
   },
   { -- NOTE: Type definitions for Lua Language
-    "Bilal2453/luvit-meta",
+    "Bilal2453/luvit-meta", -- cspell:disable-line
     lazy = true,
   },
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      { "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
-      "williamboman/mason-lspconfig.nvim",
-      "WhoIsSethDaniel/mason-tool-installer.nvim",
-      { "j-hui/fidget.nvim", opts = {} },
+      { "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants -- cspell:disable-line
+      "williamboman/mason-lspconfig.nvim", -- cspell:disable-line
+      "WhoIsSethDaniel/mason-tool-installer.nvim", -- cspell:disable-line
+      { "j-hui/fidget.nvim", opts = {} }, -- cspell:disable-line
       -- NOTE: Allows extra capabilities provided by nvim-cmp
-      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lsp", -- cspell:disable-line
     },
     config = function()
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -33,18 +37,18 @@ return {
 
           local builtin = require("telescope.builtin")
 
-          map("gd", builtin.lsp_definitions, "[G]oto [D]definition")
-          map("gr", builtin.lsp_references, "[G]oto [R]eferences")
-          map("gI", builtin.lsp_implementations, "[G]oto [I]mplementation")
-          map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-          map("<leader>D", builtin.lsp_type_definitions, "Type [D]definition")
-          map("<leader>ws", builtin.lsp_dynamic_workspace_symbols, "[W]orkspace [S]symbols")
-          map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-          map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
+          map("gd", builtin.lsp_definitions, "[G]oto [D]definition") -- cspell:disable-line
+          map("gr", builtin.lsp_references, "[G]oto [R]eferences") -- cspell:disable-line-- cspell:disable-line-- cspell:disable-line-- cspell:disable-line
+          map("gI", builtin.lsp_implementations, "[G]oto [I]mplementation") -- cspell:disable-line
+          map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration") -- cspell:disable-line
+          map("<leader>D", builtin.lsp_type_definitions, "Type [D]definition") -- cspell:disable-line
+          map("<leader>ws", builtin.lsp_dynamic_workspace_symbols, "[W]orkspace [S]symbols") -- cspell:disable-line
+          map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame") -- cspell:disable-line
+          map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" }) -- cspell:disable-line
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-            local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
+            local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false }) -- cspell:disable-line
             vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
               buffer = event.buf,
               group = highlight_augroup,
@@ -67,8 +71,8 @@ return {
           end
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
             map("<leader>th", function()
-              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
-            end, "[T]oggle Inlay [H]ints")
+              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })) -- cspell:disable-line
+            end, "[T]oggle Inlay [H]ints") -- cspell:disable-line
           end
         end,
       })

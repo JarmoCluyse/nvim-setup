@@ -3,7 +3,7 @@
 ---@diagnostic disable: missing-fields
 -- cspell:ignore dapui
 
-return {
+return { -- INFO: Debugging and Profiling
   "mfussenegger/nvim-dap", -- cspell:disable-line
   dependencies = {
     "rcarriga/nvim-dap-ui", -- cspell:disable-line
@@ -40,7 +40,7 @@ return {
       automatic_installation = true,
       handlers = {},
       ensure_installed = {
-        "delve",
+        "delve", -- GO debugger
       },
     })
     dapui.setup({

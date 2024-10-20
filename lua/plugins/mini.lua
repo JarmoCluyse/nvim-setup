@@ -1,3 +1,5 @@
+-- NOTE: [[ mini ]]
+
 return {
   { -- Collection of various small independent plugins/modules
     "echasnovski/mini.nvim",
@@ -31,9 +33,6 @@ return {
       statusline.section_location = function()
         return "%2l:%-2v"
       end
-
-      -- ... and there is more!
-      --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
 }

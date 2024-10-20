@@ -3,10 +3,7 @@
 -- TODO: check the other copilot plugin it has a lot of features
 
 return {
-  -- {
-  --   "github/copilot.vim",
-  -- },
-  {
+  { -- INFO: Copilot Autocomplete
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     event = "InsertEnter",
@@ -27,7 +24,7 @@ return {
       })
     end,
   },
-  {
+  { -- INFO: Copilot Chat
     "CopilotC-Nvim/CopilotChat.nvim",
     branch = "canary",
     dependencies = {

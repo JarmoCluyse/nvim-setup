@@ -1,6 +1,7 @@
-return {
+-- NOTE: [[ Linting ]] - works with conform.nvim
 
-  { -- Linting
+return {
+  {
     "mfussenegger/nvim-lint",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
@@ -15,7 +16,6 @@ return {
         group = lint_augroup,
         callback = function()
           lint.try_lint()
-          require("lint").try_lint("cspell")
         end,
       })
     end,

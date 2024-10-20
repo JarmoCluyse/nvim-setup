@@ -1,3 +1,5 @@
+-- NOTE: [[ Formatting ]]
+
 return { -- formatting plugins
   "stevearc/conform.nvim", -- cspell:disable-line
   event = { "BufReadPre", "BufNewFile" },
@@ -20,7 +22,7 @@ return { -- formatting plugins
         lua = { "stylua" },
         ["*"] = { "cspell", "codespell" },
       },
-      -- NOTE: format will execute on save
+      -- INFO: format will execute on save
       format_on_save = {
         lsp_fallback = true,
         async = false,
@@ -34,7 +36,6 @@ return { -- formatting plugins
         async = false,
         timeout_ms = 1000,
       })
-
       require("lint").try_lint("cspell")
     end, { desc = "Format file or range (in visual mode)" })
   end,

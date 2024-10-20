@@ -4,13 +4,11 @@
 
 local opt = vim.opt
 
-vim.cmd("set nowrap")
-
 opt.number = true
-opt.relativenumber = false
+opt.relativenumber = true
 opt.mouse = "a"
 opt.showmode = false
-
+opt.wrap = false
 -- sync clipboard with system clipboard
 vim.schedule(function()
   vim.opt.clipboard = "unnamedplus"
@@ -21,7 +19,7 @@ opt.undofile = true
 opt.ignorecase = true
 opt.smartcase = true
 opt.signcolumn = "yes"
-opt.updatetime = 250
+opt.updatetime = 50
 opt.timeoutlen = 300
 opt.splitright = true
 opt.splitbelow = true

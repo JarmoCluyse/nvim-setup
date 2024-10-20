@@ -1,3 +1,5 @@
+-- NOTE: [[ Neotest ]] is a testing framework for [[ Neovim ]] that supports multiple test runners.
+
 return {
   {
     "nvim-neotest/neotest",

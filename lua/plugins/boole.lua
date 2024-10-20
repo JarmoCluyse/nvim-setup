@@ -1,3 +1,5 @@
+-- NOTE: [[ Boole ]] toggle boolean values
+
 return {
   "nat-418/boole.nvim",
   opts = {
@@ -7,7 +9,6 @@ return {
     },
     -- User defined loops
     additions = {
-      { "Foo", "Bar" },
       { "tic", "tac", "toe" },
     },
   },

@@ -1,3 +1,5 @@
+-- NOTE: [[ TypeScript Tools ]] is a plugin that provides TypeScript language support for [[ Neovim ]].
+
 return {
   {
     "pmizio/typescript-tools.nvim",
