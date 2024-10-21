@@ -1,12 +1,21 @@
 -- NOTE: [[ Editor appearance ]]
 
-return {
-  { -- INFO: Material theme
-    "marko-cerovac/material.nvim", -- cspell:disable-line
+-- cspell:ignore catppuccin
 
-    init = function()
-      vim.cmd.colorscheme("material")
-      vim.g.material_style = "Ocianic" -- cspell:disable-line
+return {
+  {
+    "catppuccin/nvim",
+    lazy = false,
+    name = "catppuccin",
+    priority = 1000,
+    opts = {
+      transparent_background = true,
+    },
+    config = function()
+      vim.cmd.colorscheme("catppuccin-mocha")
+      vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+      vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
     end,
   },
   { -- INFO: Highlight todo, notes, etc in comments
