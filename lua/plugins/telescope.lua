@@ -16,19 +16,45 @@ return {
       },
       { "nvim-telescope/telescope-ui-select.nvim" },
       { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+      {
+        "nvim-telescope/telescope.nvim",
+        dependencies = {
+          {
+            "isak102/telescope-git-file-history.nvim",
+            dependencies = {
+              "nvim-lua/plenary.nvim",
+              "tpope/vim-fugitive",
+            },
+          },
+        },
+      },
     },
     config = function()
+      local actions = require("telescope.actions")
+      local builtin = require("telescope.builtin")
+
       require("telescope").setup({
         extensions = {
           ["ui-select"] = {
             require("telescope.themes").get_dropdown(),
           },
         },
+        defaults = {
+          mappings = {
+            i = {
+              ["<c-d>"] = actions.delete_buffer,
+            },
+            n = {
+              ["<c-d>"] = actions.delete_buffer,
+              ["dd"] = actions.delete_buffer,
+            },
+          },
+        },
       })
       pcall(require("telescope").load_extension, "fzf")
       pcall(require("telescope").load_extension, "ui-select")
-
-      local builtin = require("telescope.builtin")
+      pcall(require("telescope").load_extension, "git_file_history")
+      local extensions = require("telescope").extensions
       vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
       vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
       vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
@@ -40,6 +66,8 @@ return {
       vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
       vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
+      vim.keymap.set("n", "<leader>si", extensions.nerdy.nerdy, { desc = "[S]earch nerd [i]cons" })
+      vim.keymap.set("n", "<leader>sb", extensions.git_file_history.git_file_history, { desc = "[S]earch git history [B]lames" })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set("n", "<leader>/", function()
