@@ -2,7 +2,6 @@ return {
   "nvim-lualine/lualine.nvim",
   dependencies = {
     { "nvim-tree/nvim-web-devicons" },
-    { "yavorski/lualine-macro-recording.nvim" },
     {
       "f-person/git-blame.nvim",
       event = "VeryLazy",
@@ -38,7 +37,24 @@ return {
           },
           { git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available, color = { fg = "#c6c6c6" } },
         },
-        lualine_x = { "macro_recording", "%S", "diagnostics" },
+        lualine_x = {
+          "diagnostics",
+          {
+            require("noice").api.status.mode.get,
+            cond = require("noice").api.status.mode.has,
+            color = { fg = "#ff9e64" },
+          },
+          {
+            require("noice").api.status.search.get,
+            cond = require("noice").api.status.search.has,
+            color = { fg = "#ff9e64" },
+          },
+          {
+            require("noice").api.status.command.get,
+            cond = require("noice").api.status.command.has,
+            color = { fg = "#ff9e64" },
+          },
+        },
         lualine_y = { "filetype", "encoding", "fileformat" },
         lualine_z = { "location" },
       },
