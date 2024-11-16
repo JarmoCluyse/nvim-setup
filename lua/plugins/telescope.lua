@@ -7,6 +7,8 @@ return {
     branch = "0.1.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "nvim-telescope/telescope-ui-select.nvim",
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
@@ -14,19 +16,19 @@ return {
           return vim.fn.executable("make") == 1
         end,
       },
-      { "nvim-telescope/telescope-ui-select.nvim" },
-      { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
       {
-        "nvim-telescope/telescope.nvim",
+        "isak102/telescope-git-file-history.nvim",
         dependencies = {
-          {
-            "isak102/telescope-git-file-history.nvim",
-            dependencies = {
-              "nvim-lua/plenary.nvim",
-              "tpope/vim-fugitive",
-            },
-          },
+          "tpope/vim-fugitive",
         },
+      },
+      {
+        "2kabhishek/nerdy.nvim",
+        dependencies = {
+          "stevearc/dressing.nvim",
+          "nvim-telescope/telescope.nvim",
+        },
+        cmd = "Nerdy",
       },
     },
     config = function()
@@ -35,9 +37,12 @@ return {
       local state = require("telescope.state")
       local action_state = require("telescope.actions.state")
 
-      local slow_scroll = function(prompt_bufnr, direction)
-        local previewer = action_state.get_current_picker(prompt_bufnr).previewer
-        local status = state.get_status(prompt_bufnr)
+      -- Slow scrolling in preview window
+      -- @param prompt_buf_nr number: The prompt buffer number
+      -- @param direction number: The direction to scroll in
+      local slow_scroll = function(prompt_buf_nr, direction)
+        local previewer = action_state.get_current_picker(prompt_buf_nr).previewer
+        local status = state.get_status(prompt_buf_nr)
 
         -- Check if we actually have a previewer and a preview window
         if type(previewer) ~= "table" or previewer.scroll_fn == nil or status.preview_win == nil then
@@ -46,6 +51,8 @@ return {
 
         previewer:scroll_fn(1 * direction)
       end
+
+      -- Setup Telescope
       require("telescope").setup({
         extensions = {
           ["ui-select"] = {
@@ -55,11 +62,11 @@ return {
         defaults = {
           mappings = {
             i = {
-              ["<C-e>"] = function(bufnr)
-                slow_scroll(bufnr, 1)
+              ["<C-e>"] = function(buf_nr)
+                slow_scroll(buf_nr, 1)
               end,
-              ["<C-y>"] = function(bufnr)
-                slow_scroll(bufnr, -1)
+              ["<C-y>"] = function(buf_nr)
+                slow_scroll(buf_nr, -1)
               end,
               ["<c-w>"] = actions.delete_buffer,
             },
@@ -70,10 +77,38 @@ return {
           },
         },
       })
+      -- load extensions
       pcall(require("telescope").load_extension, "fzf")
       pcall(require("telescope").load_extension, "ui-select")
       pcall(require("telescope").load_extension, "git_file_history")
+      require("telescope").load_extension("nerdy")
       local extensions = require("telescope").extensions
+
+      -- Fuzzy find in current buffer
+      local current_buffer_fuzzy_find = function()
+        builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+          winblend = 10,
+          previewer = false,
+        }))
+      end
+
+      -- grep in open files
+      local grep_open_files = function()
+        builtin.live_grep({
+          grep_open_files = true,
+          prompt_title = "Live Grep in Open Files",
+        })
+      end
+
+      -- find config files
+      local find_config_files = function()
+        builtin.find_files({
+          cwd = vim.fn.stdpath("config"),
+          prompt_title = "Find Config Files",
+        })
+      end
+
+      -- Setup keymaps
       vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
       vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
       vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
@@ -87,29 +122,9 @@ return {
       vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
       vim.keymap.set("n", "<leader>si", extensions.nerdy.nerdy, { desc = "[S]earch nerd [i]cons" })
       vim.keymap.set("n", "<leader>sb", extensions.git_file_history.git_file_history, { desc = "[S]earch git history [B]lames" })
-
-      -- Slightly advanced example of overriding default behavior and theme
-      vim.keymap.set("n", "<leader>/", function()
-        -- You can pass additional configuration to Telescope to change the theme, layout, etc.
-        builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-          winblend = 10,
-          previewer = false,
-        }))
-      end, { desc = "[/] Fuzzily search in current buffer" })
-
-      -- It's also possible to pass additional configuration options.
-      --  See `:help telescope.builtin.live_grep()` for information about particular keys
-      vim.keymap.set("n", "<leader>s/", function()
-        builtin.live_grep({
-          grep_open_files = true,
-          prompt_title = "Live Grep in Open Files",
-        })
-      end, { desc = "[S]earch [/] in Open Files" })
-
-      -- Shortcut for searching your Neovim configuration files
-      vim.keymap.set("n", "<leader>sn", function()
-        builtin.find_files({ cwd = vim.fn.stdpath("config") })
-      end, { desc = "[S]earch [N]eovim files" })
+      vim.keymap.set("n", "<leader>/", current_buffer_fuzzy_find, { desc = "[/] Fuzzily search in current buffer" })
+      vim.keymap.set("n", "<leader>s/", grep_open_files, { desc = "[S]earch [/] in Open Files" })
+      vim.keymap.set("n", "<leader>sn", find_config_files, { desc = "[S]earch [N]eovim files" })
     end,
   },
 }
