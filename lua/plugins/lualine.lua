@@ -1,21 +1,22 @@
+-- NOTE: [[ lualine ]]
+-- this is the status line at the bottom of the editor
+
+---@diagnostic disable: undefined-field
+-- cspell:ignore lualine gitblame devicons noice worktree fileformat
+
 return {
   "nvim-lualine/lualine.nvim",
   dependencies = {
-    { "nvim-tree/nvim-web-devicons" },
-    {
-      "f-person/git-blame.nvim",
-      event = "VeryLazy",
-      opts = {
-        enabled = true, -- if you want to enable the plugin
-        message_template = " <author> • <date> • <sha> • <summary>", -- template for the blame message, check the Message template section for more options
-        date_format = "%m-%d-%Y %H:%M:%S", -- template for the date, check Date format section for more options
-        virtual_text_column = 0, -- virtual text start column, check Start virtual text at column section for more options
-      },
-    },
+    "nvim-tree/nvim-web-devicons",
+    "f-person/git-blame.nvim",
+    "folke/noice.nvim",
   },
   config = function()
     vim.g.gitblame_display_virtual_text = 0
     local git_blame = require("gitblame")
+    local git_utils = require("functions.git-utils")
+    local noice = require("noice")
+
     require("lualine").setup({
       options = {
         theme = "material",
@@ -24,7 +25,7 @@ return {
       },
       sections = {
         lualine_a = { "mode" },
-        lualine_b = { "branch", "diff" },
+        lualine_b = { git_utils.get_git_worktree, "branch", "diff" },
         lualine_c = {
           {
             "filename",
@@ -40,18 +41,18 @@ return {
         lualine_x = {
           "diagnostics",
           {
-            require("noice").api.status.mode.get,
-            cond = require("noice").api.status.mode.has,
+            noice.api.status.mode.get,
+            cond = noice.api.status.mode.has,
             color = { fg = "#ff9e64" },
           },
           {
-            require("noice").api.status.search.get,
-            cond = require("noice").api.status.search.has,
+            noice.api.status.search.get,
+            cond = noice.api.status.search.has,
             color = { fg = "#ff9e64" },
           },
           {
-            require("noice").api.status.command.get,
-            cond = require("noice").api.status.command.has,
+            noice.api.status.command.get,
+            cond = noice.api.status.command.has,
             color = { fg = "#ff9e64" },
           },
         },
