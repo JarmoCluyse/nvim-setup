@@ -6,22 +6,39 @@ return {
   { -- INFO: Autocompletion
     "hrsh7th/nvim-cmp", -- cspell:disable-line
     event = "InsertEnter",
+    -- cspell:disable
     dependencies = {
       { -- INFO: snippets
         "L3MON4D3/LuaSnip",
         dependencies = {
-          "rafamadriz/friendly-snippets", -- cspell:disable-line
-          "saadparwaiz1/cmp_luasnip", -- cspell:disable-line
+          "rafamadriz/friendly-snippets",
+          "saadparwaiz1/cmp_luasnip",
         },
       },
-      "hrsh7th/cmp-nvim-lsp", -- cspell:disable-line INFO: add LSP capabilities to autocomplete
-      "hrsh7th/cmp-path", -- cspell:disable-line INFO: add path completion
+      "hrsh7th/cmp-nvim-lsp", -- INFO: add LSP capabilities to autocomplete
+      "hrsh7th/cmp-path", -- INFO: add path completion
     },
+    -- cspell:enable
     config = function()
       local cmp = require("cmp")
+
       require("luasnip.loaders.from_vscode").lazy_load()
       local luasnip = require("luasnip")
       luasnip.config.setup({})
+
+      -- <c-l> will move you to the right of each of the expansion locations.
+      local luasnip_expand = function()
+        if luasnip.expand_or_locally_jumpable() then
+          luasnip.expand_or_jump()
+        end
+      end
+
+      -- <c-h> is similar, except moving you backwards.
+      local luasnip_jump_back = function()
+        if luasnip.jumpable(-1) then
+          luasnip.jump(-1)
+        end
+      end
 
       cmp.setup({
         snippet = {
@@ -40,20 +57,9 @@ return {
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-y>"] = cmp.mapping.confirm({ select = true }),
-          -- ["<CR>"] = cmp.mapping.confirm({ select = true }),
           ["<C-Space>"] = cmp.mapping.complete({}),
-          -- <c-l> will move you to the right of each of the expansion locations.
-          -- <c-h> is similar, except moving you backwards.
-          ["<C-l>"] = cmp.mapping(function()
-            if luasnip.expand_or_locally_jumpable() then
-              luasnip.expand_or_jump()
-            end
-          end, { "i", "s" }),
-          ["<C-h>"] = cmp.mapping(function()
-            if luasnip.locally_jumpable(-1) then
-              luasnip.jump(-1)
-            end
-          end, { "i", "s" }),
+          ["<C-l>"] = cmp.mapping(luasnip_expand, { "i", "s" }),
+          ["<C-h>"] = cmp.mapping(luasnip_jump_back, { "i", "s" }),
         }),
         sources = {
           {

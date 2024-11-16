@@ -10,6 +10,12 @@ return {
       "nvim-tree/nvim-web-devicons",
       "nvim-telescope/telescope-ui-select.nvim",
       {
+        "debugloop/telescope-undo.nvim",
+        -- ["<CR>"] = require("telescope-undo.actions").yank_additions,
+        -- ["<C-y>"] = require("telescope-undo.actions").yank_deletions,
+        -- ["<C-r>"] = require("telescope-undo.actions").restore,
+      },
+      {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
         cond = function()
@@ -81,7 +87,9 @@ return {
       pcall(require("telescope").load_extension, "fzf")
       pcall(require("telescope").load_extension, "ui-select")
       pcall(require("telescope").load_extension, "git_file_history")
-      require("telescope").load_extension("nerdy")
+      pcall(require("telescope").load_extension, "undo")
+      pcall(require("telescope").load_extension, "nerdy")
+
       local extensions = require("telescope").extensions
 
       -- Fuzzy find in current buffer
@@ -125,6 +133,7 @@ return {
       vim.keymap.set("n", "<leader>/", current_buffer_fuzzy_find, { desc = "[/] Fuzzily search in current buffer" })
       vim.keymap.set("n", "<leader>s/", grep_open_files, { desc = "[S]earch [/] in Open Files" })
       vim.keymap.set("n", "<leader>sn", find_config_files, { desc = "[S]earch [N]eovim files" })
+      vim.keymap.set("n", "<leader>u", extensions.undo.undo, { desc = "[U]ndo history" })
     end,
   },
 }

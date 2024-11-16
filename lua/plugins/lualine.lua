@@ -8,14 +8,12 @@ return {
   "nvim-lualine/lualine.nvim",
   dependencies = {
     "nvim-tree/nvim-web-devicons",
-    "f-person/git-blame.nvim",
     "folke/noice.nvim",
   },
   config = function()
     vim.g.gitblame_display_virtual_text = 0
-    local git_blame = require("gitblame")
     local git_utils = require("functions.git-utils")
-    local noice = require("noice")
+    local noice_status = require("noice").api.status
 
     require("lualine").setup({
       options = {
@@ -36,23 +34,22 @@ return {
               newfile = "󰝒", -- Text to show for newly created file before first write
             },
           },
-          { git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available, color = { fg = "#c6c6c6" } },
         },
         lualine_x = {
           "diagnostics",
           {
-            noice.api.status.mode.get,
-            cond = noice.api.status.mode.has,
+            noice_status.mode.get,
+            cond = noice_status.mode.has,
             color = { fg = "#ff9e64" },
           },
           {
-            noice.api.status.search.get,
-            cond = noice.api.status.search.has,
+            noice_status.search.get,
+            cond = noice_status.search.has,
             color = { fg = "#ff9e64" },
           },
           {
-            noice.api.status.command.get,
-            cond = noice.api.status.command.has,
+            noice_status.command.get,
+            cond = noice_status.command.has,
             color = { fg = "#ff9e64" },
           },
         },
