@@ -88,6 +88,14 @@ return {
             },
           },
         },
+        powershell_es = {
+          filetypes = { "ps1", "psm1", "psd1" },
+          bundle_path = "~/AppData/Local/nvim-data/mason/packages/powershell-editor-services",
+          settings = { powershell = { codeFormatting = { Preset = "OTBS" } } },
+          init_options = {
+            enableProfileLoading = false,
+          },
+        },
       }
 
       require("mason").setup()

@@ -28,3 +28,14 @@ opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 opt.inccommand = "split"
 opt.cursorline = true
 opt.scrolloff = 10
+
+-- NOTE: [[ Windows specific options ]]
+--
+---@diagnostic disable-next-line: undefined-field
+local isWindows = vim.loop.os_uname().sysname:find("Windows") and true or false
+
+if isWindows then
+  opt.shell = "powershell"
+  vim.opt.shellcmdflag = "-nologo -noprofile -ExecutionPolicy RemoteSigned -command"
+  vim.opt.shellxquote = ""
+end

@@ -10,6 +10,7 @@ return {
     -- User defined loops
     additions = {
       { "tic", "tac", "toe" },
+      { "enable", "disable" },
       { "&&", "||" },
     },
   },
