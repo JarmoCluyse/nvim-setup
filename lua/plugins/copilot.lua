@@ -125,8 +125,9 @@ return {
       require("CopilotChat").setup({
         debug = true, -- Enable debugging
         allow_insecure = true, -- Allow insecure connection_failure_errmsg
+        chat_autocomplete = true,
       })
-      require("CopilotChat.integrations.cmp").setup()
+      -- require("CopilotChat.integrations.cmp").setup()
     end,
   },
 }
