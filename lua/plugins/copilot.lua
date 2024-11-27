@@ -123,7 +123,7 @@ return {
     -- See Commands section for default commands if you want to lazy load on them
     config = function()
       require("CopilotChat").setup({
-        debug = true, -- Enable debugging
+        -- debug = true, -- Enable debugging
         allow_insecure = true, -- Allow insecure connection_failure_errmsg
         chat_autocomplete = true,
       })
