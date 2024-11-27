@@ -3,6 +3,9 @@
 return {
   { -- Highlight, edit, and navigate code
     "nvim-treesitter/nvim-treesitter",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+    },
     build = ":TSUpdate",
     main = "nvim-treesitter.configs", -- Sets main module to use for opts
     opts = {
@@ -27,6 +30,28 @@ return {
         additional_vim_regex_highlighting = { "ruby" },
       },
       indent = { enable = true, disable = { "ruby" } },
+      textobjects = {
+        select = {
+          enable = true,
+          lookahead = true,
+          keymaps = {
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+            ["ac"] = "@class.outer",
+            ["ic"] = "@class.inner",
+
+            -- xml attribute
+            ["ax"] = "@attribute.outer",
+            ["ix"] = "@attribute.inner",
+
+            -- json
+            ["ak"] = "@key.outer",
+            ["ik"] = "@key.inner",
+            ["av"] = "@value.outer",
+            ["iv"] = "@value.inner",
+          },
+        },
+      },
     },
   },
 }
