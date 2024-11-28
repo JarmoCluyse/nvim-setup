@@ -17,5 +17,11 @@ return {
         },
       },
     })
+
+    local keymap = vim.keymap
+    local csharp = require("csharp")
+
+    keymap.set("n", "<leader>cd", csharp.debug_project, { desc = "csharp Debug project" })
+    keymap.set("n", "<leader>cr", csharp.run_project, { desc = "csharp Run project" })
   end,
 }
