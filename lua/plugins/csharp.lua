@@ -1,5 +1,6 @@
 return {
-  "iabdelkareem/csharp.nvim",
+  -- "iabdelkareem/csharp.nvim", -- temporary until PR is merged
+  "JarmoCluyse/csharp.nvim",
   dependencies = {
     "williamboman/mason.nvim", -- Required, automatically installs omnisharp
     "mfussenegger/nvim-dap",
