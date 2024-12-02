@@ -22,6 +22,7 @@ return {
         "vim",
         "vimdoc",
         "jsdoc",
+        "go",
       },
       -- Autoinstall languages that are not installed
       auto_install = true,

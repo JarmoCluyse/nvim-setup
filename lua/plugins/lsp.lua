@@ -107,6 +107,8 @@ return {
         "eslint",
         "cspell",
         "codespell",
+        "gopls",
+        "delve",
       })
       require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
       require("mason-lspconfig").setup({
