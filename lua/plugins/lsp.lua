@@ -41,8 +41,9 @@ return {
           map("gr", builtin.lsp_references, "[G]oto [R]eferences") -- cspell:disable-line-- cspell:disable-line-- cspell:disable-line-- cspell:disable-line
           map("gI", builtin.lsp_implementations, "[G]oto [I]mplementation") -- cspell:disable-line
           map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration") -- cspell:disable-line
-          map("<leader>D", builtin.lsp_type_definitions, "Type [D]definition") -- cspell:disable-line
-          map("<leader>ws", builtin.lsp_dynamic_workspace_symbols, "[W]orkspace [S]symbols") -- cspell:disable-line
+          map("gk", builtin.lsp_type_definitions, "[G]oto [K]type definition") -- cspell:disable-line
+          map("<leader>kw", builtin.lsp_dynamic_workspace_symbols, "[k]symbols [W]workspace") -- cspell:disable-line
+          map("<leader>kd", builtin.lsp_document_symbols, "[k]symbols  [D]document") -- cspell:disable-line
           map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame") -- cspell:disable-line
           map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" }) -- cspell:disable-line
 
