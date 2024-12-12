@@ -1,3 +1,5 @@
+-- NOTE: [[ C# ]]
+
 return {
   {
     -- "iabdelkareem/csharp.nvim", -- temporary until PR is merged
@@ -15,21 +17,18 @@ return {
           },
           roslyn = {
             enable = false,
-            cmd_path = "C:/Users/COMAR/AppData/Local/nvim-data/csharp/roslyn-lsp",
           },
         },
       })
 
-      local keymap = vim.keymap
       local csharp = require("csharp")
 
-      keymap.set("n", "<leader>nd", csharp.debug_project, { desc = ".NET Debug project" })
-      keymap.set("n", "<leader>ne", csharp.run_project, { desc = ".NET Run project" })
+      vim.keymap.set("n", "<leader>nd", csharp.debug_project, { desc = ".NET Debug project" })
+      vim.keymap.set("n", "<leader>ne", csharp.run_project, { desc = ".NET Run project" })
     end,
   },
   {
     "MoaidHathot/dotnet.nvim",
-    -- enabled = false,
     branch = "dev",
     cmd = "DotnetUI",
     keys = {
@@ -41,9 +40,9 @@ return {
       { "<leader>npr", "<cmd>:DotnetUI project package remove<CR>", { desc = ".NET remove project package", silent = true } },
     },
     opts = {
-      -- project_selection = {
-      -- 	path_display = 'filename_first',
-      -- }
+      project_selection = {
+        path_display = "filename_first",
+      },
     },
   },
 }

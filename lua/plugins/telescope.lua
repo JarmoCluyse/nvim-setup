@@ -19,7 +19,7 @@ return {
     },
     config = function()
       local builtin = require("telescope.builtin")
-      local scrolling = require("functions.scrolling")
+      local scrolling = require("functions.telescope.scrolling")
       -- Setup Telescope
       require("telescope").setup({
         extensions = {
@@ -55,11 +55,11 @@ return {
       vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
       vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       -- set custom telescope keymaps
-      require("plugins.telescope_custom.current_buffer_fuzzy").setup()
-      require("plugins.telescope_custom.grep_open_files").setup()
-      require("plugins.telescope_custom.config_files").setup()
-      require("plugins.telescope_custom.multigrep").setup()
-      require("plugins.telescope_custom.buffers").setup()
+      require("functions.telescope.current_buffer_fuzzy").setup()
+      require("functions.telescope.grep_open_files").setup()
+      require("functions.telescope.config_files").setup()
+      require("functions.telescope.multigrep").setup()
+      require("functions.telescope.buffers").setup()
     end,
   },
 }

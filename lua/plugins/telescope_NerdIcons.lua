@@ -13,7 +13,6 @@ return {
     event = "VimEnter",
     lazy = true,
     config = function()
-      print("Loading nerdy.nvim")
       local telescope = require("telescope")
       telescope.load_extension("nerdy")
 
