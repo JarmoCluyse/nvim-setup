@@ -10,46 +10,16 @@ return {
       "nvim-tree/nvim-web-devicons",
       "nvim-telescope/telescope-ui-select.nvim",
       {
-        "debugloop/telescope-undo.nvim",
-        -- ["<CR>"] = require("telescope-undo.actions").yank_additions,
-        -- ["<C-y>"] = require("telescope-undo.actions").yank_deletions,
-        -- ["<C-r>"] = require("telescope-undo.actions").restore,
-      },
-      {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
         cond = function()
           return vim.fn.executable("make") == 1
         end,
       },
-      {
-        "isak102/telescope-git-file-history.nvim",
-        dependencies = {
-          "tpope/vim-fugitive",
-        },
-      },
     },
     config = function()
-      local actions = require("telescope.actions")
       local builtin = require("telescope.builtin")
-      local state = require("telescope.state")
-      local action_state = require("telescope.actions.state")
-
-      -- Slow scrolling in preview window
-      -- @param prompt_buf_nr number: The prompt buffer number
-      -- @param direction number: The direction to scroll in
-      local slow_scroll = function(prompt_buf_nr, direction)
-        local previewer = action_state.get_current_picker(prompt_buf_nr).previewer
-        local status = state.get_status(prompt_buf_nr)
-
-        -- Check if we actually have a previewer and a preview window
-        if type(previewer) ~= "table" or previewer.scroll_fn == nil or status.preview_win == nil then
-          return
-        end
-
-        previewer:scroll_fn(1 * direction)
-      end
-
+      local scrolling = require("functions.scrolling")
       -- Setup Telescope
       require("telescope").setup({
         extensions = {
@@ -61,16 +31,11 @@ return {
           mappings = {
             i = {
               ["<C-e>"] = function(buf_nr)
-                slow_scroll(buf_nr, 1)
+                scrolling.slow_scroll(buf_nr, 1)
               end,
               ["<C-y>"] = function(buf_nr)
-                slow_scroll(buf_nr, -1)
+                scrolling.slow_scroll(buf_nr, -1)
               end,
-              ["<c-w>"] = actions.delete_buffer,
-            },
-            n = {
-              ["<c-w>"] = actions.delete_buffer,
-              ["dd"] = actions.delete_buffer,
             },
           },
         },
@@ -78,11 +43,7 @@ return {
       -- load extensions
       pcall(require("telescope").load_extension, "fzf")
       pcall(require("telescope").load_extension, "ui-select")
-      pcall(require("telescope").load_extension, "undo")
-
-      local extensions = require("telescope").extensions
-
-      -- Setup keymaps
+      -- set simpel keymaps
       vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
       vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
       vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
@@ -93,13 +54,12 @@ return {
       vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
       vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
       vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-      vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
-      vim.keymap.set("n", "<leader>u", extensions.undo.undo, { desc = "[U]ndo history" })
-
+      -- set custom telescope keymaps
       require("plugins.telescope_custom.current_buffer_fuzzy").setup()
       require("plugins.telescope_custom.grep_open_files").setup()
       require("plugins.telescope_custom.config_files").setup()
       require("plugins.telescope_custom.multigrep").setup()
+      require("plugins.telescope_custom.buffers").setup()
     end,
   },
 }
