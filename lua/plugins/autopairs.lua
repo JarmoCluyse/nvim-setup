@@ -1,14 +1,13 @@
--- NOTE: [[ autopairs ]]
+-- NOTE: [[ autopairs ]] auto close brackets, quotes and autotag for html
 
--- cspell:ignore autotag
-
+-- cspell:ignore autotag windwp hrsh7th
 return {
   -- INFO: auto add closing brackets, quotes, etc
   {
     "windwp/nvim-autopairs", -- cspell:disable-line
     event = "InsertEnter",
     dependencies = {
-      "hrsh7th/nvim-cmp", -- cspell:disable-line
+      "hrsh7th/nvim-cmp",
     },
     config = function()
       require("nvim-autopairs").setup({})

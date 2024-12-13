@@ -1,18 +1,16 @@
 -- NOTE: [[ Autocompletion ]]
 
--- cspell:ignore luasnip
+-- cspell:ignore luasnip hrsh menuone noinsert completeopt
 
 return {
   { -- INFO: Autocompletion
     "hrsh7th/nvim-cmp", -- cspell:disable-line
-    event = "InsertEnter",
-    -- cspell:disable
     dependencies = {
-      "L3MON4D3/LuaSnip",
+      "L3MON4D3/LuaSnip", -- INFO: snippets, config is in snippets.lua
       "hrsh7th/cmp-nvim-lsp", -- INFO: add LSP capabilities to autocomplete
       "hrsh7th/cmp-path", -- INFO: add path completion
     },
-    -- cspell:enable
+    event = "InsertEnter",
     config = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")
@@ -28,7 +26,7 @@ return {
           completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered(),
         },
-        completion = { completeopt = "menu,menuone,noinsert" }, -- cspell:disable-line
+        completion = { completeopt = "menu,menuone,noinsert" },
         mapping = cmp.mapping.preset.insert({
           ["<C-n>"] = cmp.mapping.select_next_item(),
           ["<C-p>"] = cmp.mapping.select_prev_item(),

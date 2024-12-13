@@ -1,15 +1,15 @@
 -- NOTE: [[ Comment code ]]
 
--- cspell:ignore commentstring
+-- cspell:ignore commentstring JoosepAlviste
 
 return {
   {
     "numToStr/Comment.nvim", -- cspell:disable-line
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      "JoosepAlviste/nvim-ts-context-commentstring", -- cspell:disable-line
+      "JoosepAlviste/nvim-ts-context-commentstring",
     },
-
+    --
     -- NOTE: usage:
     -- gcc to comment out a line
     -- gbc to comment out a block
