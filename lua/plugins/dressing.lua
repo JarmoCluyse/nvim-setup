@@ -1,10 +1,8 @@
 -- INFO: boards for telescope
 
--- cspell:disable-line
-
 return {
   {
-    "stevearc/dressing.nvim",
+    "stevearc/dressing.nvim", -- cspell:disable-line
     event = "VeryLazy",
   },
 }

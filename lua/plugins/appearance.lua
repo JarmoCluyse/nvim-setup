@@ -18,8 +18,4 @@ return {
       vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
     end,
   },
-  { -- INFO: boards for telescope
-    "stevearc/dressing.nvim", -- cspell:disable-line
-    event = "VeryLazy",
-  },
 }

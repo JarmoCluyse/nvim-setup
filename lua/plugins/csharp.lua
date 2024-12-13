@@ -1,28 +1,48 @@
+-- NOTE: [[ C# ]]
+
 return {
-  -- "iabdelkareem/csharp.nvim", -- temporary until PR is merged
-  "JarmoCluyse/csharp.nvim",
-  dependencies = {
-    "williamboman/mason.nvim", -- Required, automatically installs omnisharp
-    "mfussenegger/nvim-dap",
-    "Tastyep/structlog.nvim", -- Optional, but highly recommended for debugging
+  {
+    -- "iabdelkareem/csharp.nvim", -- temporary until PR is merged
+    "JarmoCluyse/csharp.nvim",
+    dependencies = {
+      "williamboman/mason.nvim", -- Required, automatically installs omnisharp
+      "mfussenegger/nvim-dap",
+      "Tastyep/structlog.nvim", -- Optional, but highly recommended for debugging
+    },
+    config = function()
+      require("csharp").setup({
+        lsp = {
+          omnisharp = {
+            enable = true,
+          },
+          roslyn = {
+            enable = false,
+          },
+        },
+      })
+
+      local csharp = require("csharp")
+
+      vim.keymap.set("n", "<leader>nd", csharp.debug_project, { desc = ".NET Debug project" })
+      vim.keymap.set("n", "<leader>ne", csharp.run_project, { desc = ".NET Run project" })
+    end,
   },
-  config = function()
-    require("csharp").setup({
-      lsp = {
-        omnisharp = {
-          enable = true,
-        },
-        roslyn = {
-          enable = false,
-          cmd_path = "C:/Users/COMAR/AppData/Local/nvim-data/csharp/roslyn-lsp",
-        },
+  {
+    "MoaidHathot/dotnet.nvim",
+    branch = "dev",
+    cmd = "DotnetUI",
+    keys = {
+      { "<leader>na", "<cmd>:DotnetUI new_item<CR>", { desc = ".NET new item", silent = true } },
+      { "<leader>nb", "<cmd>:DotnetUI file bootstrap<CR>", { desc = ".NET bootstrap class", silent = true } },
+      { "<leader>nra", "<cmd>:DotnetUI project reference add<CR>", { desc = ".NET add project reference", silent = true } },
+      { "<leader>nrr", "<cmd>:DotnetUI project reference remove<CR>", { desc = ".NET remove project reference", silent = true } },
+      { "<leader>npa", "<cmd>:DotnetUI project package add<CR>", { desc = ".NET ada project package", silent = true } },
+      { "<leader>npr", "<cmd>:DotnetUI project package remove<CR>", { desc = ".NET remove project package", silent = true } },
+    },
+    opts = {
+      project_selection = {
+        path_display = "filename_first",
       },
-    })
-
-    local keymap = vim.keymap
-    local csharp = require("csharp")
-
-    keymap.set("n", "<leader>cd", csharp.debug_project, { desc = "csharp Debug project" })
-    keymap.set("n", "<leader>cr", csharp.run_project, { desc = "csharp Run project" })
-  end,
+    },
+  },
 }

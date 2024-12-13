@@ -3,7 +3,8 @@
 -- cspell:ignore autotag
 
 return {
-  { -- INFO: auto add closing brackets, quotes, etc
+  -- INFO: auto add closing brackets, quotes, etc
+  {
     "windwp/nvim-autopairs", -- cspell:disable-line
     event = "InsertEnter",
     dependencies = {
@@ -16,7 +17,8 @@ return {
       cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
     end,
   },
-  { -- INFO: auto close html tags
+  -- INFO: auto close html tags
+  {
     "windwp/nvim-ts-autotag", -- cspell:disable-line
     config = function()
       require("nvim-ts-autotag").setup({

@@ -13,6 +13,7 @@ return { -- formatting plugins
         typescriptreact = { "prettier" },
         svelte = { "prettier" },
         css = { "prettier" },
+        scss = { "prettier" },
         html = { "prettier" },
         json = { "prettier" },
         jsonc = { "prettier" },
