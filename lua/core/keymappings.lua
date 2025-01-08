@@ -28,3 +28,8 @@ keymap.set("x", "<leader>p", '"_dP', { desc = "Paste and void yank" })
 keymap.set("n", "<leader>d", '"_d', { desc = "Delete to void" })
 keymap.set("v", "<leader>d", '"_d', { desc = "Delete to void" })
 keymap.set("n", "<leader>rw", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "[R]eplace [W]ord under cursor" })
+
+-- keymaps for moving in quickfix list
+keymap.set("n", "<leader>cn", "<cmd>cnext<CR>", { desc = "Move to the next item in the quickfix list" })
+keymap.set("n", "<leader>cp", "<cmd>cprev<CR>", { desc = "Move to the previous item in the quickfix list" })
+keymap.set("n", "<leader>co", "<cmd>copen<CR>", { desc = "Open the quickfix list" })
