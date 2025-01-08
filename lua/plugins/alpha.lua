@@ -18,6 +18,7 @@ return {
       dashboard.section.buttons.val = {
         dashboard.button("e", "  New file", "<cmd>ene<CR>"),
         dashboard.button("<leader>sf", "󰈞  Find file"),
+        dashboard.button("<leader>sa", "󰥨  Find folder"),
         dashboard.button("<leader>sg", "  Live grep"),
         dashboard.button("c", "  Configuration", "<cmd>cd stdpath('config')<CR>"),
         dashboard.button("u", "  Update plugins", "<cmd>Lazy sync<CR>"),

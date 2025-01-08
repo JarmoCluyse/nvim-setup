@@ -57,6 +57,7 @@ return {
       -- set custom telescope keymaps
       require("functions.telescope.current_buffer_fuzzy").setup()
       require("functions.telescope.grep_open_files").setup()
+      require("functions.telescope.find_folders").setup()
       require("functions.telescope.config_files").setup()
       require("functions.telescope.multigrep").setup()
       require("functions.telescope.buffers").setup()
