@@ -2,7 +2,10 @@ local M = {}
 
 -- find config files
 local find_folders = function()
-  require("telescope.builtin").find_files({
+  local builtin = require("telescope.builtin")
+
+  builtin.find_files({
+    prompt_title = "Find Folders",
     find_command = { "fd", "--type", "d" },
   })
 end
