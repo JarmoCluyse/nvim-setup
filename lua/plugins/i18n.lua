@@ -6,5 +6,7 @@ return {
     "nvim-lua/plenary.nvim",
   },
   event = { "BufReadPre", "BufNewFile" },
-  opts = {},
+  opts = {
+    namespace_separator = ".",
+  },
 }
