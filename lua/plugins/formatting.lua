@@ -7,6 +7,7 @@ return { -- formatting plugins
     local conform = require("conform")
     conform.setup({
       formatters_by_ft = {
+        cs = { "csharpier" },
         javascript = { "prettier" },
         typescript = { "prettier" },
         javascriptreact = { "prettier" },
