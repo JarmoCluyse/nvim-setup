@@ -1,6 +1,7 @@
 return {
   { -- INFO: Highlight todo, notes, etc in comments
     "folke/todo-comments.nvim", -- cspell:disable-line
+    lazy = true,
     event = "VimEnter",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()

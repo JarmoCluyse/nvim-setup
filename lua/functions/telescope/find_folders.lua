@@ -1,6 +1,6 @@
 local M = {}
 
--- find config files
+--- Function to find and list folders using Telescope.
 local find_folders = function()
   local builtin = require("telescope.builtin")
 
@@ -10,6 +10,7 @@ local find_folders = function()
   })
 end
 
+--- Setup function to map the keybinding for finding folders.
 M.setup = function()
   vim.keymap.set("n", "<leader>sa", find_folders, { desc = "[S]earch [A]folders" })
 end

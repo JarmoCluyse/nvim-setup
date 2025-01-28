@@ -8,6 +8,8 @@ return {
   dependencies = {
     "nvim-telescope/telescope.nvim",
   },
+  lazy = true,
+  event = "VeryLazy",
   config = function()
     require("git-worktree").setup()
 

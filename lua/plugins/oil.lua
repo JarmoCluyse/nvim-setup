@@ -2,6 +2,8 @@
 
 return {
   "stevearc/oil.nvim", -- cspell:disable-line
+  lazy = true,
+  event = "VeryLazy",
   dependencies = {
     "nvim-tree/nvim-web-devicons", -- cspell:disable-line
   },

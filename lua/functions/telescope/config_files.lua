@@ -1,6 +1,6 @@
 local M = {}
 
--- find config files
+--- Function to find and list Neovim configuration files using Telescope.
 local find_config_files = function()
   local builtin = require("telescope.builtin")
   builtin.find_files({
@@ -9,6 +9,7 @@ local find_config_files = function()
   })
 end
 
+--- Setup function to map the keybinding for finding Neovim configuration files.
 M.setup = function()
   vim.keymap.set("n", "<leader>sn", find_config_files, { desc = "[S]earch [N]eovim files" })
 end

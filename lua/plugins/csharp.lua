@@ -9,6 +9,8 @@ return {
       "mfussenegger/nvim-dap",
       "Tastyep/structlog.nvim", -- Optional, but highly recommended for debugging
     },
+    lazy = true,
+    event = "VeryLazy",
     config = function()
       require("csharp").setup({
         lsp = {
@@ -31,6 +33,8 @@ return {
     "MoaidHathot/dotnet.nvim",
     branch = "dev",
     cmd = "DotnetUI",
+    lazy = true,
+    event = "VeryLazy",
     keys = {
       { "<leader>na", "<cmd>:DotnetUI new_item<CR>", { desc = ".NET new item", silent = true } },
       { "<leader>nb", "<cmd>:DotnetUI file bootstrap<CR>", { desc = ".NET bootstrap class", silent = true } },

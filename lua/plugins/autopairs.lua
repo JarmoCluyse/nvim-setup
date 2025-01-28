@@ -1,13 +1,15 @@
--- NOTE: [[ autopairs ]] auto close brackets, quotes and autotag for html
+-- NOTE: [[ autopairs ]]
+-- auto close brackets, quotes and autotag for html
 
 -- cspell:ignore autotag windwp hrsh7th
+
 return {
-  -- INFO: auto add closing brackets, quotes, etc
   {
     "windwp/nvim-autopairs", -- cspell:disable-line
+    lazy = true,
     event = "InsertEnter",
     dependencies = {
-      "hrsh7th/nvim-cmp",
+      "hrsh7th/nvim-cmp", -- completion engine
     },
     config = function()
       require("nvim-autopairs").setup({})
@@ -16,10 +18,12 @@ return {
       cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
     end,
   },
-  -- INFO: auto close html tags
   {
     "windwp/nvim-ts-autotag", -- cspell:disable-line
+    lazy = true,
+    event = "InsertEnter",
     config = function()
+      ---@diagnostic disable-next-line: missing-fields
       require("nvim-ts-autotag").setup({
         opts = {
           -- Defaults

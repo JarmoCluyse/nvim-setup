@@ -4,6 +4,8 @@ return {
   {
     "pmizio/typescript-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    lazy = true,
+    event = "VeryLazy",
     opts = {
       on_attach = function(client, bufnr)
         require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)

@@ -5,6 +5,8 @@
 return {
   {
     "folke/lazydev.nvim",
+    lazy = true,
+    event = "VeryLazy",
     ft = "lua",
     opts = {
       library = {
@@ -15,9 +17,12 @@ return {
   { -- NOTE: Type definitions for Lua Language
     "Bilal2453/luvit-meta", -- cspell:disable-line
     lazy = true,
+    event = "VeryLazy",
   },
   {
     "neovim/nvim-lspconfig",
+    lazy = true,
+    event = "VeryLazy",
     dependencies = {
       { "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants -- cspell:disable-line
       "williamboman/mason-lspconfig.nvim", -- cspell:disable-line

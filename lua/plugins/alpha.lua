@@ -1,8 +1,9 @@
--- [[Alpha]] - minimalistic start screen
+-- NOTE: [[Alpha]]
+-- minimalistic start screen
+
 return {
   {
     "goolord/alpha-nvim",
-    -- dependencies = { 'echasnovski/mini.icons' },
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       local alpha = require("alpha")
@@ -17,8 +18,10 @@ return {
       if nvim_version.build ~= nil then
         version_string = version_string .. "+" .. nvim_version.build
       end
+
       -- current path as string
       local current_path = "current folder: " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":~:.")
+
       -- current branch
       local branch = vim.fn.system("git branch --show-current")
       branch = string.gsub(branch, "\n", "")
@@ -44,10 +47,15 @@ return {
         dashboard.button("u", "  Update plugins", "<cmd>Lazy sync<CR>"),
         dashboard.button("q", "󰅚  Quit", "<cmd>qa<CR>"),
       }
+
       local handle = io.popen("fortune")
-      local fortune = handle:read("*a")
-      handle:close()
-      dashboard.section.footer.val = fortune
+      if handle then
+        local fortune = handle:read("*a")
+        handle:close()
+        dashboard.section.footer.val = fortune
+      else
+        dashboard.section.footer.val = "No fortune available"
+      end
       dashboard.config.opts.noautocmd = true
 
       vim.cmd([[autocmd User AlphaReady echo 'ready']])

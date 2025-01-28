@@ -12,6 +12,8 @@ return { -- INFO: Debugging and Profiling
     "jay-babu/mason-nvim-dap.nvim", -- cspell:disable-line
     "leoluz/nvim-dap-go", -- cspell:disable-line
   },
+  lazy = true,
+  event = "VeryLazy",
   keys = function(_, keys)
     local dap = require("dap")
     local dapui = require("dapui")

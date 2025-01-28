@@ -1,5 +1,6 @@
 local M = {}
 
+--- Expand or jump in a LuaSnip snippet.
 function M.luasnip_expand()
   local luasnip = require("luasnip")
   if luasnip.expand_or_locally_jumpable() then
@@ -7,6 +8,7 @@ function M.luasnip_expand()
   end
 end
 
+--- Jump back in a LuaSnip snippet.
 function M.luasnip_jump_back()
   local luasnip = require("luasnip")
   if luasnip.jumpable(-1) then

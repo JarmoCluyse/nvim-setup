@@ -2,6 +2,7 @@
 
 return { -- formatting plugins
   "stevearc/conform.nvim", -- cspell:disable-line
+  lazy = true,
   event = { "BufReadPre", "BufNewFile" },
   config = function()
     local conform = require("conform")

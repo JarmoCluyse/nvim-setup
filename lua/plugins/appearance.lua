@@ -1,4 +1,6 @@
 -- NOTE: [[ Editor appearance ]]
+-- add the theme
+-- set custom colors
 
 -- cspell:ignore catppuccin
 

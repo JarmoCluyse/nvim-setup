@@ -1,4 +1,4 @@
--- NOTE: [[ Global nvim options ]]
+-- NOTE: Global nvim options
 
 -- cspell:ignore relativenumber showmode breakindent undofile ignorecase smartcase signcolumn updatetime timeoutlen splitright splitbelow list listchars inccommand cursorline scrolloff unnamedplus
 
@@ -9,6 +9,7 @@ opt.relativenumber = true
 opt.mouse = "a"
 opt.showmode = false
 opt.wrap = false
+
 -- sync clipboard with system clipboard
 vim.schedule(function()
   vim.opt.clipboard = "unnamedplus"

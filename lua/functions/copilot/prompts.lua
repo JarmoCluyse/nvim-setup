@@ -1,5 +1,6 @@
 local M = {}
 
+--- Table containing various prompts for Copilot.
 local prompts = {
   -- Code related prompts
   Explain = "Please explain how the following code works.",

@@ -10,6 +10,7 @@ return {
       { "zbirenbaum/copilot.lua" },
       { "nvim-lua/plenary.nvim" },
     },
+    lazy = true,
     event = "VeryLazy",
     build = "make tiktoken", -- Only on MacOS or Linu
     keys = {

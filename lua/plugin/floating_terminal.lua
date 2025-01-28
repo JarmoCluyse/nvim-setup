@@ -5,6 +5,9 @@ local state = {
   },
 }
 
+--- Create a floating window.
+-- @param opts table: Options for the floating window.
+-- @return table: A table containing the buffer and window IDs.
 local function create_floating_window(opts)
   opts = opts or {}
   local width = opts.width or math.floor(vim.o.columns * 0.8)
@@ -39,6 +42,7 @@ local function create_floating_window(opts)
   return { buf = buf, win = win }
 end
 
+--- Toggle the floating terminal.
 local toggle_terminal = function()
   if not vim.api.nvim_win_is_valid(state.floating.win) then
     state.floating = create_floating_window({ buf = state.floating.buf })
@@ -50,7 +54,8 @@ local toggle_terminal = function()
   end
 end
 
--- Example usage:
--- Create a floating window with default dimensions
+-- Create a user command to toggle the floating terminal
 vim.api.nvim_create_user_command("FloatTerminal", toggle_terminal, {})
+
+-- Map <leader>ft to toggle the floating terminal
 vim.keymap.set("n", "<leader>ft", ":FloatTerminal<CR>", { noremap = true, silent = true })

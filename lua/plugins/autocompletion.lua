@@ -1,15 +1,17 @@
 -- NOTE: [[ Autocompletion ]]
+-- nvim-cmp adds items to the completion menu and manages the completion menu.
 
 -- cspell:ignore luasnip hrsh menuone noinsert completeopt
 
 return {
-  { -- INFO: Autocompletion
+  {
     "hrsh7th/nvim-cmp", -- cspell:disable-line
     dependencies = {
-      "L3MON4D3/LuaSnip", -- INFO: snippets, config is in snippets.lua
-      "hrsh7th/cmp-nvim-lsp", -- INFO: add LSP capabilities to autocomplete
-      "hrsh7th/cmp-path", -- INFO: add path completion
+      "L3MON4D3/LuaSnip", -- snippet engine
+      "hrsh7th/cmp-nvim-lsp", -- LSP source for nvim-cmp
+      "hrsh7th/cmp-path", -- path source for nvim-cmp
     },
+    lazy = true,
     event = "InsertEnter",
     config = function()
       local cmp = require("cmp")

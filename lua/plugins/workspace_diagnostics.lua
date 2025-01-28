@@ -1,6 +1,8 @@
 return {
   {
     "artemave/workspace-diagnostics.nvim",
+    lazy = true,
+    event = "VeryLazy",
     config = function()
       vim.keymap.set("n", "<space>xw", function()
         for _, client in ipairs(vim.lsp.get_clients()) do

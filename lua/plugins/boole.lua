@@ -1,7 +1,10 @@
--- NOTE: [[ Boole ]] toggle boolean values
+-- NOTE: [[ Boole ]]
+-- toggle boolean values
 
 return {
   "nat-418/boole.nvim",
+  lazy = true,
+  event = "VeryLazy",
   opts = {
     mappings = {
       increment = "<C-a>",

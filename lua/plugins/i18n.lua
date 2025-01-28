@@ -5,6 +5,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     "nvim-lua/plenary.nvim",
   },
+  lazy = true,
   event = { "BufReadPre", "BufNewFile" },
   opts = {
     namespace_separator = ".",

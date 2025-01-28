@@ -1,5 +1,7 @@
 local M = {}
 
+--- Function to perform a live multi-grep search using Telescope.
+--- @param opts table: Options for the multi-grep search.
 local live_multigrep = function(opts)
   opts = opts or {}
   opts.cwd = opts.cwd or vim.uv.cwd()
@@ -49,6 +51,7 @@ local live_multigrep = function(opts)
     :find()
 end
 
+--- Setup function to map the keybinding for live multi-grep search.
 M.setup = function()
   vim.keymap.set("n", "<leader>sg", live_multigrep, { desc = "Multi grep all files (2 spaces and then glob)" })
 end

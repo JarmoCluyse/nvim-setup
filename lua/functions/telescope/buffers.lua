@@ -1,5 +1,6 @@
 local M = {}
 
+--- Function to find and list existing buffers using Telescope.
 local find_Buffers = function()
   local builtin = require("telescope.builtin")
   local actions = require("telescope.actions")
@@ -12,6 +13,7 @@ local find_Buffers = function()
   })
 end
 
+--- Setup function to map the keybinding for finding buffers.
 M.setup = function()
   vim.keymap.set("n", "<leader><leader>", find_Buffers, { desc = "[ ] Find existing buffers" })
 end

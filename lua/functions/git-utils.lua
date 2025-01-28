@@ -1,8 +1,8 @@
 local M = {}
 
--- Get the toplevel directory of a git repository
--- @param dir The directory to get the toplevel of
--- @return The toplevel directory of the git repository
+--- Get the top-level directory of a git repository.
+--- @param dir string: The directory to check.
+--- @return string: The top-level directory of the git repository, or an empty string if not in a git repository.
 local function get_toplevel(dir)
   local handle = io.popen("git -C " .. dir .. " rev-parse --show-toplevel 2>nul")
   if not handle then
@@ -13,9 +13,8 @@ local function get_toplevel(dir)
   return result
 end
 
--- Get the current git worktree of the buffer
--- if the buffer is not in a git repository, return the worktree of the current nvim directory
--- else return nothing
+--- Get the git worktree of the current buffer.
+--- @return string: The name of the git worktree.
 function M.get_git_worktree()
   -- get the toplevel directory of the buffer
   local buffer_dir = vim.fn.expand("%:p:h")

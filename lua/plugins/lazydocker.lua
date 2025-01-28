@@ -1,6 +1,7 @@
 return {
   {
     "crnvl96/lazydocker.nvim",
+    lazy = true,
     event = "VeryLazy",
     opts = {}, -- automatically calls `require("lazydocker").setup()`
     dependencies = {
