@@ -97,6 +97,22 @@ return {
             enableProfileLoading = false,
           },
         },
+        omnisharp = {
+          settings = {
+            FormattingOptions = {
+              EnableEditorConfigSupport = true,
+            },
+            RoslynExtensionsOptions = {
+              -- Enables support for roslyn analyzers, code fixes and rulesets.
+              EnableAnalyzersSupport = true,
+              EnableImportCompletion = true,
+              AnalyzeOpenDocumentsOnly = nil,
+            },
+            Sdk = {
+              IncludePrereleases = true,
+            },
+          },
+        },
       }
 
       require("mason").setup()
@@ -110,6 +126,7 @@ return {
         "codespell",
         "gopls",
         "delve",
+        "omnisharp",
       })
       require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
       require("mason-lspconfig").setup({
