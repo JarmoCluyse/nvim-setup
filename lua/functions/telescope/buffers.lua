@@ -1,9 +1,8 @@
-local builtin = require("telescope.builtin")
-local actions = require("telescope.actions")
-
 local M = {}
 
 local find_Buffers = function()
+  local builtin = require("telescope.builtin")
+  local actions = require("telescope.actions")
   builtin.buffers({
     attach_mappings = function(_, map)
       map("i", "<c-d>", actions.delete_buffer)

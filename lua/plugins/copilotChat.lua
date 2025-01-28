@@ -2,9 +2,6 @@
 
 -- cspell:ignore errmsg
 
-local prompts = require("functions.copilot.prompts").prompts
-local actions = require("functions.copilot.actions")
-
 return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
@@ -16,9 +13,9 @@ return {
     event = "VeryLazy",
     build = "make tiktoken", -- Only on MacOS or Linu
     keys = {
-      { "<leader>ah", actions.help_actions, desc = "CopilotChat - Help actions" },
-      { "<leader>ap", actions.prompt_actions, desc = "CopilotChat - Prompt actions" },
-      { "<leader>ap", actions.prompt_actions_visual, mode = "x", desc = "CopilotChat - Prompt actions" },
+      { "<leader>ah", require("functions.copilot.actions").help_actions, desc = "CopilotChat - Help actions" },
+      { "<leader>ap", require("functions.copilot.actions").prompt_actions, desc = "CopilotChat - Prompt actions" },
+      { "<leader>ap", require("functions.copilot.actions").prompt_actions_visual, mode = "x", desc = "CopilotChat - Prompt actions" },
       -- Code related commands
       { "<leader>ae", "<cmd>CopilotChatExplain<cr>", desc = "CopilotChat - Explain code" },
       { "<leader>at", "<cmd>CopilotChatTests<cr>", desc = "CopilotChat - Generate tests" },
@@ -29,7 +26,7 @@ return {
       { "<leader>av", ":CopilotChatVisual", mode = "x", desc = "CopilotChat - Open in vertical split" },
       { "<leader>ax", ":CopilotChatInline<cr>", mode = "x", desc = "CopilotChat - Inline chat" },
       -- Custom input for CopilotChat
-      { "<leader>ai", actions.ask_input, desc = "CopilotChat - Ask input" },
+      { "<leader>ai", require("functions.copilot.actions").ask_input, desc = "CopilotChat - Ask input" },
       -- Generate commit message based on the git diff
       { "<leader>am", "<cmd>CopilotChatCommit<cr>", desc = "CopilotChat - Generate commit message for all changes" },
       { "<leader>aM", "<cmd>CopilotChatCommitStaged<cr>", desc = "CopilotChat - Generate commit message for staged changes" },
@@ -41,6 +38,8 @@ return {
       { "<leader>a?", "<cmd>CopilotChatModels<cr>", desc = "CopilotChat - Select Models" },
     },
     config = function()
+      local prompts = require("functions.copilot.prompts").prompts
+
       require("CopilotChat").setup({
         prompts = prompts,
         allow_insecure = true, -- Allow insecure connection_failure_errmsg

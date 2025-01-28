@@ -1,9 +1,8 @@
-local builtin = require("telescope.builtin")
-
 local M = {}
 
 -- find config files
 local find_config_files = function()
+  local builtin = require("telescope.builtin")
   builtin.find_files({
     cwd = vim.fn.stdpath("config"),
     prompt_title = "Find Config Files",

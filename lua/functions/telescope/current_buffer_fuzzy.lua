@@ -1,9 +1,8 @@
-local builtin = require("telescope.builtin")
-
 local M = {}
 
 -- Fuzzy find in current buffer
 local current_buffer_fuzzy_find = function()
+  local builtin = require("telescope.builtin")
   builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
     winblend = 10,
     previewer = false,
