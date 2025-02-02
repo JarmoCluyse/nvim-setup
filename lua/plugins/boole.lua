@@ -12,7 +12,7 @@ return {
     },
     -- User defined loops
     additions = {
-      { "enable", "disable" },
+      -- { "enable", "disable" },
       { "&&", "||" },
     },
   },

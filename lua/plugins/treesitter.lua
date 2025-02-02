@@ -1,7 +1,8 @@
--- NOTE: [[ Treesitter ]] is a parser generator tool and an incremental parsing library.
+-- NOTE: [[ Treesitter ]]
+-- parse files for other plugins
 
 return {
-  { -- Highlight, edit, and navigate code
+  {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",

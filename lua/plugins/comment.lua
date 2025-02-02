@@ -1,5 +1,6 @@
 -- NOTE: [[ Comment code ]]
 -- put the line / block in comment
+-- awereness in files (tsx for example)
 
 -- cspell:ignore commentstring JoosepAlviste
 
@@ -11,10 +12,6 @@ return {
     dependencies = {
       "JoosepAlviste/nvim-ts-context-commentstring",
     },
-
-    -- NOTE: usage:
-    -- gcc to comment out a line
-    -- gbc to comment out a block
 
     config = function()
       local comment = require("Comment")

@@ -1,4 +1,5 @@
--- NOTE: [[ Linting ]] - works with conform.nvim
+-- NOTE: [[ Linting ]] 
+-- works with conform.nvim
 
 return {
   {

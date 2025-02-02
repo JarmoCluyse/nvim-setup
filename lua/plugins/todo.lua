@@ -1,5 +1,8 @@
+-- NOTE: [[ TODO ]]
+-- highlight and search for todos
+
 return {
-  { -- INFO: Highlight todo, notes, etc in comments
+  { 
     "folke/todo-comments.nvim", -- cspell:disable-line
     lazy = true,
     event = "VimEnter",

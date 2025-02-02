@@ -1,34 +1,17 @@
--- NOTE: [[]]
+-- NOTE: [[ LSP config ]]
+-- lsp configuration
 
 -- cspell:ignore lazydev luvit dependants lsp lspconfig folke lazydev autocmd autocmds augroup
 
 return {
   {
-    "folke/lazydev.nvim",
-    lazy = true,
-    event = "VeryLazy",
-    ft = "lua",
-    opts = {
-      library = {
-        { path = "luvit-meta/library", words = { "vim%.uv" } },
-      },
-    },
-  },
-  { -- NOTE: Type definitions for Lua Language
-    "Bilal2453/luvit-meta", -- cspell:disable-line
-    lazy = true,
-    event = "VeryLazy",
-  },
-  {
     "neovim/nvim-lspconfig",
     lazy = true,
     event = "VeryLazy",
     dependencies = {
-      { "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants -- cspell:disable-line
+      { "williamboman/mason.nvim", config = true }, -- Must be loaded before dependants -- cspell:disable-line
       "williamboman/mason-lspconfig.nvim", -- cspell:disable-line
-      "WhoIsSethDaniel/mason-tool-installer.nvim", -- cspell:disable-line
       { "j-hui/fidget.nvim", opts = {} }, -- cspell:disable-line
-      -- NOTE: Allows extra capabilities provided by nvim-cmp
       "hrsh7th/cmp-nvim-lsp", -- cspell:disable-line
     },
     config = function()
@@ -84,6 +67,7 @@ return {
       })
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+
       local servers = {
         lua_ls = {
           settings = {
@@ -120,21 +104,6 @@ return {
         },
       }
 
-      require("mason").setup()
-      local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-        "stylua", -- Used to format Lua code
-        "eslint_d",
-        "prettier",
-        "eslint",
-        "cspell",
-        "codespell",
-        "gopls",
-        "delve",
-        "omnisharp",
-        "csharpier",
-      })
-      require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
       require("mason-lspconfig").setup({
         handlers = {
           function(server_name)

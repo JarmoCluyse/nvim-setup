@@ -15,7 +15,7 @@ return {
       telescope.load_extension("undo")
 
       local extensions = telescope.extensions
-      vim.keymap.set("n", "<leader>u", extensions.undo.undo, { desc = "[U]ndo history" })
+      vim.keymap.set("n", "<leader>su", extensions.undo.undo, { desc = "[U]ndo history" })
     end,
   },
 }

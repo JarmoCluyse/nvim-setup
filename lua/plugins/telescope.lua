@@ -1,7 +1,8 @@
--- NOTE: [[ Telescope ]] is a highly extensible fuzzy finder plugin for [[ Neovim ]].
+-- NOTE: [[ Telescope ]]
+-- search plugin
 
 return {
-  { -- Fuzzy Finder (files, lsp, etc)
+  {
     "nvim-telescope/telescope.nvim",
     lazy = true,
     event = "VimEnter",

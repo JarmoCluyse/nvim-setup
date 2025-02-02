@@ -1,7 +1,8 @@
 -- NOTE: [[ Indentation ]]
+-- Detect tabstop and shiftwidth automatically
 
 return {
-  "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
+  "tpope/vim-sleuth",
   lazy = true,
   event = "VeryLazy",
   { -- Add indentation guides even on blank lines

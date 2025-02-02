@@ -2,7 +2,7 @@
 -- this is a plugin that provides git worktree support for Neovim.
 
 -- cspell:ignore worktree worktrees ThePrimeagen
---
+
 return {
   "ThePrimeagen/git-worktree.nvim",
   dependencies = {

@@ -1,4 +1,5 @@
--- NOTE: [[ Oil ]]
+-- NOTE: [[ File explorer ]]
+-- edit folder and files in a buffer
 
 return {
   "stevearc/oil.nvim", -- cspell:disable-line

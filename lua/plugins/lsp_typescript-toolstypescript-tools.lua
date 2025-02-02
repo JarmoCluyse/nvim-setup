@@ -1,4 +1,6 @@
--- NOTE: [[ TypeScript Tools ]] is a plugin that provides TypeScript language support for [[ Neovim ]].
+-- NOTE: [[ TypeScript Tools ]]
+-- this is the typescript lsp plugin
+-- this is not through mason but sepparate
 
 return {
   {
@@ -7,9 +9,6 @@ return {
     lazy = true,
     event = "VeryLazy",
     opts = {
-      on_attach = function(client, bufnr)
-        require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
-      end,
       settings = {
         expose_as_code_action = "all",
         code_lens = "all",

@@ -1,7 +1,8 @@
 -- NOTE: [[ Git Gutter Signs ]]
+-- INFO: Adds git related signs to the gutter, as well as utilities for managing changes
 
 return {
-  { -- INFO: Adds git related signs to the gutter, as well as utilities for managing changes
+  {
     "lewis6991/gitsigns.nvim",
     lazy = true,
     event = "VeryLazy",

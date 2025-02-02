@@ -1,4 +1,5 @@
--- INFO: boards for telescope
+-- INFO: [[ Dressing ]]
+-- boards for telescope
 
 return {
   {

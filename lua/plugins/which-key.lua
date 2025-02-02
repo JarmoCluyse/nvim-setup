@@ -1,4 +1,5 @@
--- NOTE: [[ Pending Keybinds ]]
+-- NOTE: [[ which key ]]
+-- show pending keybinds
 
 return {
   { -- Useful plugin to show you pending keybinds.
@@ -6,6 +7,7 @@ return {
     lazy = true,
     event = "VimEnter", -- Sets the loading event to 'VimEnter'
     opts = {
+      preset = "helix",
       icons = {
         -- set icon mappings to true if you have a Nerd Font
         mappings = vim.g.have_nerd_font,

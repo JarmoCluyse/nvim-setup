@@ -1,5 +1,5 @@
--- NOTE: [[ Autocompletion ]]
--- nvim-cmp adds items to the completion menu and manages the completion menu.
+-- NOTE: [[ nvim-cmp ]]
+-- adds items to the completion menu and manages the completion menu.
 
 -- cspell:ignore luasnip hrsh menuone noinsert completeopt
 

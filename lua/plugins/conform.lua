@@ -1,6 +1,8 @@
 -- NOTE: [[ Formatting ]]
+-- plugin to run formatting
+-- TODO: add progress!
 
-return { -- formatting plugins
+return {
   "stevearc/conform.nvim", -- cspell:disable-line
   lazy = true,
   event = { "BufReadPre", "BufNewFile" },
@@ -26,7 +28,7 @@ return { -- formatting plugins
         lua = { "stylua" },
         ["*"] = { "cspell", "codespell" },
       },
-      -- INFO: format will execute on save
+
       format_on_save = {
         lsp_fallback = true,
         async = false,

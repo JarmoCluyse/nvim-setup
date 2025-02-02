@@ -1,4 +1,7 @@
 -- NOTE: [[ C# ]]
+-- plugins for C#
+-- run and debug C# code
+-- add items to C# project
 
 return {
   {

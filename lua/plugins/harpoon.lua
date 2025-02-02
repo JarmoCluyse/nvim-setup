@@ -1,4 +1,5 @@
--- NOTE: [[ Harpoon ]] - A bookmarking plugin for neovim
+-- NOTE: [[ Harpoon ]]
+-- A bookmarking plugin for neovim
 
 return {
   "ThePrimeagen/harpoon",

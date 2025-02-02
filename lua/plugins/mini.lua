@@ -1,4 +1,5 @@
 -- NOTE: [[ mini ]]
+-- group of small plugins
 
 return {
   { -- Collection of various small independent plugins/modules

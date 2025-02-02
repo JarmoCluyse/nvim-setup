@@ -4,5 +4,5 @@
 local g = vim.g
 g.mapleader = " "
 g.maplocalleader = " "
--- enable clipboard
+-- configre nerd font
 g.have_nerd_font = true

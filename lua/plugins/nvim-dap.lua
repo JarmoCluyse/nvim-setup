@@ -1,4 +1,5 @@
--- NOTE: [[ Debugging ]]
+-- NOTE: [[ nvim-dap ]]
+-- debug adapter protocol client implementation for Neovim
 
 ---@diagnostic disable: missing-fields
 -- cspell:ignore dapui
@@ -8,9 +9,6 @@ return { -- INFO: Debugging and Profiling
   dependencies = {
     "rcarriga/nvim-dap-ui", -- cspell:disable-line
     "nvim-neotest/nvim-nio", -- cspell:disable-line
-    "williamboman/mason.nvim", -- cspell:disable-line
-    "jay-babu/mason-nvim-dap.nvim", -- cspell:disable-line
-    "leoluz/nvim-dap-go", -- cspell:disable-line
   },
   lazy = true,
   event = "VeryLazy",
@@ -48,14 +46,6 @@ return { -- INFO: Debugging and Profiling
     vim.fn.sign_define("DapLogPoint", { text = "", texthl = "DapLogPoint", linehl = "DapLogPoint", numhl = "DapLogPoint" })
     vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" })
 
-    require("mason-nvim-dap").setup({
-      automatic_installation = true,
-      handlers = {},
-      ensure_installed = {
-        "delve", -- GO debugger
-        "coreclr", -- dotnet debugger
-      },
-    })
     dapui.setup({
       icons = { expanded = "▾", collapsed = "▸", current_frame = "" },
       controls = {
@@ -75,10 +65,5 @@ return { -- INFO: Debugging and Profiling
     dap.listeners.after.event_initialized["dapui_config"] = dapui.open
     dap.listeners.before.event_terminated["dapui_config"] = dapui.close
     dap.listeners.before.event_exited["dapui_config"] = dapui.close
-    require("dap-go").setup({
-      delve = {
-        detached = vim.fn.has("win32") == 0,
-      },
-    })
   end,
 }

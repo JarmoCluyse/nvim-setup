@@ -1,3 +1,6 @@
+-- NOTE: [[ go ]]
+-- lsp for go
+
 return {
   "ray-x/go.nvim",
   dependencies = { -- optional packages
