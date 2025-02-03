@@ -31,10 +31,19 @@ keymap.set("v", "<M-j>", "<cmd>:m +1<CR>gv=gv", { desc = "Move line down by one"
 keymap.set("x", "<leader>p", '"_dP', { desc = "Paste and void yank" })
 keymap.set("n", "<leader>d", '"_d', { desc = "Delete to void" })
 keymap.set("v", "<leader>d", '"_d', { desc = "Delete to void" })
-keymap.set("n", "<leader>rw", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "[R]eplace [W]ord under cursor" })
+keymap.set(
+  "n",
+  "<leader>rw",
+  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+  { desc = "[R]eplace [W]ord under cursor" }
+)
 
 -- INFO: Quickfix list
 keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic as [Q]uickfix list" })
 keymap.set("n", "<leader>cn", "<cmd>cnext<CR>", { desc = "Move to the next item in the quickfix list" })
 keymap.set("n", "<leader>cp", "<cmd>cprev<CR>", { desc = "Move to the previous item in the quickfix list" })
 keymap.set("n", "<leader>co", "<cmd>copen<CR>", { desc = "Open the quickfix list" })
+
+-- INFO: visual block tab
+keymap.set("x", "<Tab>", ">gv", { desc = "Shift right" })
+keymap.set("x", "<S-Tab>", "<gv", { desc = "Shift left" })
