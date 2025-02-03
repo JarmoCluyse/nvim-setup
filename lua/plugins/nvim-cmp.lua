@@ -20,9 +20,7 @@ return {
 
       cmp.setup({
         snippet = {
-          expand = function(args)
-            luasnip.lsp_expand(args.body)
-          end,
+          expand = function(args) luasnip.lsp_expand(args.body) end,
         },
         window = {
           completion = cmp.config.window.bordered(),
@@ -44,6 +42,13 @@ return {
           { name = "nvim_lsp" },
           { name = "luasnip" },
           { name = "path" },
+        },
+      })
+
+      cmp.setup.filetype({ "sql" }, {
+        sources = {
+          { name = "vim-dadbod-completion" },
+          { name = "buffer" },
         },
       })
     end,
