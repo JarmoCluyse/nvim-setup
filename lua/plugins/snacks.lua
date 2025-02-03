@@ -91,9 +91,9 @@ return {
     -- NOTE: lazygit
     { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse", mode = { "n", "v" } },
     { "<leader>gb", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
-    { "<leader>gf", function() Snacks.lazygit.log_file() end, desc = "Lazygit Current File History" },
-    { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
-    { "<leader>gl", function() Snacks.lazygit.log() end, desc = "Lazygit Log (cwd)" },
+    { "<leader>lgh", function() Snacks.lazygit.log_file() end, desc = "Lazygit Current File History" },
+    { "<leader>lg", function() Snacks.lazygit() end, desc = "Lazygit" },
+    { "<leader>lgl", function() Snacks.lazygit.log() end, desc = "Lazygit Log (cwd)" },
 
     -- NOTE: terminal
     -- { "<c-/>", function() Snacks.terminal() end, desc = "Toggle Terminal" },
