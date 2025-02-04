@@ -6,8 +6,6 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    lazy = true,
-    event = "VeryLazy",
     dependencies = {
       { "williamboman/mason.nvim", config = true }, -- Must be loaded before dependants -- cspell:disable-line
       "williamboman/mason-lspconfig.nvim", -- cspell:disable-line
