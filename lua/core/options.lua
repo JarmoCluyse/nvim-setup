@@ -11,9 +11,7 @@ opt.showmode = false
 opt.wrap = false
 
 -- sync clipboard with system clipboard
-vim.schedule(function()
-  vim.opt.clipboard = "unnamedplus"
-end)
+vim.schedule(function() vim.opt.clipboard = "unnamedplus" end)
 
 opt.breakindent = true
 opt.undofile = true
@@ -36,7 +34,7 @@ opt.scrolloff = 10
 local isWindows = vim.loop.os_uname().sysname:find("Windows") and true or false
 
 if isWindows then
-  opt.shell = "powershell"
+  opt.shell = "pwsh"
   vim.opt.shellcmdflag = "-nologo -noprofile -ExecutionPolicy RemoteSigned -command"
   vim.opt.shellxquote = ""
 end
