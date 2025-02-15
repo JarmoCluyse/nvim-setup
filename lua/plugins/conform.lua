@@ -26,7 +26,6 @@ return {
         graphql = { "prettier" },
         liquid = { "prettier" },
         lua = { "stylua" },
-        ["*"] = { "cspell", "codespell" },
       },
 
       format_on_save = {
@@ -45,6 +44,17 @@ return {
       require("lint").try_lint("cspell")
     end
 
+    local formatAndSpell = function()
+      conform.format({
+        lsp_fallback = true,
+        async = false,
+        timeout_ms = 1000,
+      })
+      require("lint").try_lint("cspell")
+      require("lint").try_lint("codespell")
+    end
+
     vim.keymap.set({ "n", "v" }, "<leader>f", format, { desc = "Format file or range (in visual mode)" })
+    vim.keymap.set({ "n", "v" }, "<leader>fs", formatAndSpell, { desc = "Format file or range (in visual mode)" })
   end,
 }
