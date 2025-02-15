@@ -17,7 +17,7 @@ return {
 
     require("lualine").setup({
       options = {
-        theme = "material",
+        theme = "catppuccin",
         section_separators = "",
         component_separators = "",
       },
