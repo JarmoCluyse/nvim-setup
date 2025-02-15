@@ -14,9 +14,7 @@ return {
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
-        cond = function()
-          return vim.fn.executable("make") == 1
-        end,
+        cond = function() return vim.fn.executable("make") == 1 end,
       },
     },
     config = function()
@@ -30,14 +28,15 @@ return {
           },
         },
         defaults = {
+          file_ignore_patterns = {
+            "node_modules/.*",
+            "reports/.*",
+            ".git/.*",
+          },
           mappings = {
             i = {
-              ["<C-e>"] = function(buf_nr)
-                scrolling.slow_scroll(buf_nr, 1)
-              end,
-              ["<C-y>"] = function(buf_nr)
-                scrolling.slow_scroll(buf_nr, -1)
-              end,
+              ["<C-e>"] = function(buf_nr) scrolling.slow_scroll(buf_nr, 1) end,
+              ["<C-y>"] = function(buf_nr) scrolling.slow_scroll(buf_nr, -1) end,
             },
           },
         },
@@ -45,7 +44,7 @@ return {
       -- load extensions
       pcall(require("telescope").load_extension, "fzf")
       pcall(require("telescope").load_extension, "ui-select")
-      -- set simpel keymaps
+      -- set simple keymaps
       vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
       vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
       vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
