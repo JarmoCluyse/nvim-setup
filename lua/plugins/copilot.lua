@@ -24,7 +24,7 @@ return {
       })
 
       -- set color for Copilot suggestions
-      local copilot_fg = "#93BDB2"
+      local copilot_fg = "#8bd5ca" -- Catppuccin Teal
       vim.api.nvim_set_hl(0, "CopilotSuggestion", { fg = copilot_fg })
       vim.api.nvim_set_hl(0, "CopilotAnnotation", { fg = copilot_fg })
     end,
