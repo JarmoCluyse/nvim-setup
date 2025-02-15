@@ -9,12 +9,14 @@ return {
     lazy = true,
     event = "VeryLazy",
     dependencies = {
+      "uga-rosa/utf8.nvim",
       "nvim-neotest/nvim-nio",
       "nvim-lua/plenary.nvim",
       "antoinemadec/FixCursorHold.nvim",
       "nvim-treesitter/nvim-treesitter",
       "marilari88/neotest-vitest",
       "Issafalcon/neotest-dotnet",
+      "fredrikaverpil/neotest-golang",
     },
     config = function()
       require("neotest").setup({
@@ -28,6 +30,9 @@ return {
               adapter_name = "coreclr",
               discovery_root = "solution", -- or "solution (.sln)" or "project (.csproj)"
             },
+          }),
+          require("neotest-golang")({
+            runner = "gotestsum",
           }),
         },
       })

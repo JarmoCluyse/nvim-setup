@@ -23,9 +23,7 @@ return { -- INFO: Debugging and Profiling
       { "<leader>b", dap.toggle_breakpoint, desc = "Debug: Toggle Breakpoint" },
       {
         "<leader>B",
-        function()
-          dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
-        end,
+        function() dap.set_breakpoint(vim.fn.input("Breakpoint condition: ")) end,
         desc = "Debug: Set Breakpoint",
       },
       { "<F7>", dapui.toggle, desc = "Debug: See last session result." },
@@ -36,15 +34,30 @@ return { -- INFO: Debugging and Profiling
     local dap = require("dap")
     local dapui = require("dapui")
 
-    vim.api.nvim_set_hl(0, "DapBreakpoint", { ctermbg = 0, fg = "#993939", bg = "#31353f" })
-    vim.api.nvim_set_hl(0, "DapLogPoint", { ctermbg = 0, fg = "#61afef", bg = "#31353f" })
-    vim.api.nvim_set_hl(0, "DapStopped", { ctermbg = 0, fg = "#98c379", bg = "#31353f" })
+    vim.api.nvim_set_hl(0, "DapBreakpoint", { ctermbg = 0, fg = "#ed8796", bg = "#31353f" })
+    vim.api.nvim_set_hl(0, "DapLogPoint", { ctermbg = 0, fg = "#91d7e3", bg = "#31353f" })
+    vim.api.nvim_set_hl(0, "DapStopped", { ctermbg = 0, fg = "#a6da95", bg = "#31353f" })
 
-    vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" })
-    vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" })
-    vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" })
-    vim.fn.sign_define("DapLogPoint", { text = "", texthl = "DapLogPoint", linehl = "DapLogPoint", numhl = "DapLogPoint" })
-    vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" })
+    vim.fn.sign_define(
+      "DapBreakpoint",
+      { text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+    )
+    vim.fn.sign_define(
+      "DapBreakpointCondition",
+      { text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+    )
+    vim.fn.sign_define(
+      "DapBreakpointRejected",
+      { text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+    )
+    vim.fn.sign_define(
+      "DapLogPoint",
+      { text = "", texthl = "DapLogPoint", linehl = "DapLogPoint", numhl = "DapLogPoint" }
+    )
+    vim.fn.sign_define(
+      "DapStopped",
+      { text = "", texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" }
+    )
 
     dapui.setup({
       icons = { expanded = "▾", collapsed = "▸", current_frame = "" },
