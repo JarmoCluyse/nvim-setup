@@ -14,7 +14,9 @@ return {
       "nvim-lua/plenary.nvim",
       "antoinemadec/FixCursorHold.nvim",
       "nvim-treesitter/nvim-treesitter",
-      "marilari88/neotest-vitest",
+      -- FIXME: return to original repo after PR is merged
+      -- "marilari88/neotest-vitest",
+      "JarmoCluyse/neotest-vitest",
       "Issafalcon/neotest-dotnet",
       "fredrikaverpil/neotest-golang",
     },
@@ -22,7 +24,7 @@ return {
       require("neotest").setup({
         adapters = {
           require("neotest-vitest")({
-            vitestCommand = "npx vitest run",
+            -- vitestCommand = "npx vitest run",
           }),
           require("neotest-dotnet")({
             dap = {
