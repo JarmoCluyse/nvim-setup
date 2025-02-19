@@ -40,11 +40,12 @@ return {
       })
 
       local actions = require("functions.testing.actions")
-      vim.keymap.set("n", "<leader>te", require("neotest").summary.toggle, { desc = "explore [T]ests" })
-      vim.keymap.set("n", "<leader>tc", actions.test_cursor, { desc = "Run [T]est at [C]ursor" })
-      vim.keymap.set("n", "<leader>tf", actions.test_file, { desc = "Run [T]est at [F]ile" })
-      vim.keymap.set("n", "<leader>tC", actions.debug_cursor, { desc = "debug [T]est at [C]ursor" })
-      vim.keymap.set("n", "<leader>tF", actions.debug_file, { desc = "test [T]est at [F]ile" })
+      vim.keymap.set("n", "<leader>te", require("neotest").summary.toggle, { desc = "test: explore [T]ests" })
+      vim.keymap.set("n", "<leader>tc", actions.test_cursor, { desc = "test: [T]est at [C]ursor" })
+      vim.keymap.set("n", "<leader>tf", actions.test_file, { desc = "test: [T]est at [F]ile" })
+      vim.keymap.set("n", "<leader>ta", actions.run_all, { desc = "test: [T]est [A]ll" })
+      vim.keymap.set("n", "<leader>tC", actions.debug_cursor, { desc = "test: [T]est debug [C]ursor" })
+      vim.keymap.set("n", "<leader>tF", actions.debug_file, { desc = "test: [T]est debug [F]ile" })
     end,
   },
 }
