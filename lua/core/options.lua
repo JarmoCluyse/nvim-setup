@@ -11,7 +11,7 @@ opt.showmode = false
 opt.wrap = false
 
 -- sync clipboard with system clipboard
--- vim.schedule(function() vim.opt.clipboard = "unnamedplus" end)
+vim.schedule(function() vim.opt.clipboard = "unnamedplus" end)
 
 opt.breakindent = true
 opt.undofile = true
