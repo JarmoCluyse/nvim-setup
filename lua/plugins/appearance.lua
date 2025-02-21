@@ -61,6 +61,11 @@ return {
       vim.api.nvim_set_hl(0, "DiagnosticSignWarn", { fg = warn_fg })
       vim.api.nvim_set_hl(0, "DiagnosticSignError", { fg = error_fg })
 
+      vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
+      vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
+      vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
+      vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
+
       vim.diagnostic.config({
         signs = {
           text = {
