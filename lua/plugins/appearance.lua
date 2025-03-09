@@ -79,7 +79,7 @@ return {
           severity = vim.diagnostic.severity.INFO,
         },
         float = {
-          border = "single",
+          border = "rounded",
         },
         virtual_text = true,
       })
