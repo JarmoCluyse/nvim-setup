@@ -4,10 +4,10 @@
 return {
   "WhoIsSethDaniel/mason-tool-installer.nvim", -- cspell:disable-line
   dependencies = {
-    { "williamboman/mason.nvim" },
+    "williamboman/mason.nvim",
   },
   config = function()
-    local ensure_installed = vim.tbl_keys(servers or {})
+    local ensure_installed = {}
     vim.list_extend(ensure_installed, {
       "stylua", -- Used to format Lua code
       "eslint_d",
@@ -18,6 +18,7 @@ return {
       "codespell",
       "gopls",
       "delve",
+      "roslyn",
       "omnisharp",
       "csharpier",
     })
