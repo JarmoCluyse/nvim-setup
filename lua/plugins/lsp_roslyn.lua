@@ -4,7 +4,12 @@
 return {
   "seblyng/roslyn.nvim",
   ft = "cs",
-  opts = {
-    config = {},
-  },
+  config = function()
+    require("roslyn").setup({
+      config = {},
+      broad_search = true,
+    })
+    -- create commands
+    require("functions.roslyn_utils").setup()
+  end,
 }

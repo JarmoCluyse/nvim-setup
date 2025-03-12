@@ -19,7 +19,7 @@ return {
       "gopls",
       "delve",
       "roslyn",
-      "omnisharp",
+      -- "omnisharp",
       "csharpier",
     })
     require("mason-tool-installer").setup({

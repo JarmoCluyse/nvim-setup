@@ -30,8 +30,8 @@ return {
             dap = {
               args = { justMyCode = false },
               adapter_name = "coreclr",
-              discovery_root = "solution", -- or "solution (.sln)" or "project (.csproj)"
             },
+            discovery_root = "solution", -- or "solution (.sln)" or "project (.csproj)"
           }),
           require("neotest-golang")({
             runner = "gotestsum",
