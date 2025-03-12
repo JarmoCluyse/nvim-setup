@@ -28,10 +28,9 @@ keymap.set("v", "<M-k>", "<cmd>:m -2<CR>gv=gv", { desc = "Move line up by one" }
 keymap.set("v", "<M-j>", "<cmd>:m +1<CR>gv=gv", { desc = "Move line down by one" })
 
 -- INFO: Copy and paste
-keymap.set("n", "<leader>y", '"+y', { desc = "Yank to clipboard" })
+keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank to system clipboard" })
 keymap.set("x", "<leader>p", '"_dP', { desc = "Paste and void yank" })
-keymap.set("n", "<leader>d", '"_d', { desc = "Delete to void" })
-keymap.set("v", "<leader>d", '"_d', { desc = "Delete to void" })
+keymap.set({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete to void" })
 keymap.set(
   "n",
   "<leader>rw",
