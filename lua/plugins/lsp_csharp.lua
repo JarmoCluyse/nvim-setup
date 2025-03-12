@@ -13,25 +13,18 @@ return {
       "Tastyep/structlog.nvim", -- Optional, but highly recommended for debugging
       "seblyng/roslyn.nvim",
     },
+    enabled = false,
     lazy = true,
     event = "VeryLazy",
     config = function()
       require("csharp").setup({
         lsp = {
-          omnisharp = {
-            enable = true,
-          },
-          roslyn = {
-            enable = true,
-            cmd_path = vim.fs.joinpath(
-              vim.fn.stdpath("data"),
-              "mason",
-              "packages",
-              "roslyn",
-              "libexec",
-              "Microsoft.CodeAnalysis.LanguageServer.dll"
-            ),
-          },
+          -- omnisharp = {
+          --   enable = false,
+          -- },
+          -- roslyn = {
+          --   enable = false,
+          -- },
         },
       })
 
