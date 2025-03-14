@@ -10,7 +10,7 @@ return {
     config = function()
       require("copilot").setup({
         suggestion = {
-          auto_trigger = true,
+          auto_trigger = false,
           hide_during_completion = false,
           debounce = 75,
           keymap = {

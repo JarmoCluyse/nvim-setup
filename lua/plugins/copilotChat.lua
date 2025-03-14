@@ -6,6 +6,7 @@ return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     branch = "main",
+    enabled = false,
     dependencies = {
       { "zbirenbaum/copilot.lua" },
       { "nvim-lua/plenary.nvim" },
@@ -16,7 +17,12 @@ return {
     keys = {
       { "<leader>ah", require("functions.copilot.actions").help_actions, desc = "CopilotChat - Help actions" },
       { "<leader>ap", require("functions.copilot.actions").prompt_actions, desc = "CopilotChat - Prompt actions" },
-      { "<leader>ap", require("functions.copilot.actions").prompt_actions_visual, mode = "x", desc = "CopilotChat - Prompt actions" },
+      {
+        "<leader>ap",
+        require("functions.copilot.actions").prompt_actions_visual,
+        mode = "x",
+        desc = "CopilotChat - Prompt actions",
+      },
       -- Code related commands
       { "<leader>ae", "<cmd>CopilotChatExplain<cr>", desc = "CopilotChat - Explain code" },
       { "<leader>at", "<cmd>CopilotChatTests<cr>", desc = "CopilotChat - Generate tests" },
@@ -30,7 +36,11 @@ return {
       { "<leader>ai", require("functions.copilot.actions").ask_input, desc = "CopilotChat - Ask input" },
       -- Generate commit message based on the git diff
       { "<leader>am", "<cmd>CopilotChatCommit<cr>", desc = "CopilotChat - Generate commit message for all changes" },
-      { "<leader>aM", "<cmd>CopilotChatCommitStaged<cr>", desc = "CopilotChat - Generate commit message for staged changes" },
+      {
+        "<leader>aM",
+        "<cmd>CopilotChatCommitStaged<cr>",
+        desc = "CopilotChat - Generate commit message for staged changes",
+      },
       -- Quick chat with Copilot
       { "<leader>ad", "<cmd>CopilotChatDebugInfo<cr>", desc = "CopilotChat - Debug Info" },
       { "<leader>af", "<cmd>CopilotChatFixDiagnostic<cr>", desc = "CopilotChat - Fix Diagnostic" },
@@ -45,6 +55,7 @@ return {
         prompts = prompts,
         allow_insecure = true, -- Allow insecure connection_failure_errmsg
         chat_autocomplete = true,
+        model = "claude-3.7-sonnet",
       })
     end,
   },
