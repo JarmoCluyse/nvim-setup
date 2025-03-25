@@ -4,7 +4,9 @@ local M = {}
 --- @param dir string: The directory to check.
 --- @return string: The top-level directory of the git repository, or an empty string if not in a git repository.
 local function get_toplevel(dir)
-  local handle = io.popen("git -C " .. dir .. " rev-parse --show-toplevel 2>nul")
+  local is_windows = vim.loop.os_uname().sysname:find("Windows") and true or false
+  local redirect = is_windows and "2>nul" or "2>/dev/null"
+  local handle = io.popen("git -C " .. dir .. " rev-parse --show-toplevel " .. redirect)
   if not handle then
     return ""
   end
