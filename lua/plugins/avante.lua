@@ -6,6 +6,10 @@ return {
     enabled = true,
     opts = {
       provider = "copilot",
+      auto_suggestions_provider = "copilot",
+      copilot = {
+        model = "claude-3.7-sonnet",
+      },
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
     -- build = "make",
