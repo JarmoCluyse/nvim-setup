@@ -196,7 +196,7 @@ end
 
 function M.setup()
   vim.keymap.set("n", "<leader>ne", M.start_program, { desc = "Start dotnet project" })
-  vim.keymap.set("n", "<leader>ne", M.start_program, { desc = "Debug dotnet project" })
+  vim.keymap.set("n", "<leader>nd", M.start_program, { desc = "Debug dotnet project" })
 end
 
 return M
