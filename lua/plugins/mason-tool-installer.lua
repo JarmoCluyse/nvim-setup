@@ -19,6 +19,7 @@ return {
       "gopls",
       "delve",
       "roslyn",
+      "ts_ls",
       -- "omnisharp",
       "csharpier",
     })
