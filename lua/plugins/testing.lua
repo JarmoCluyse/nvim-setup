@@ -17,6 +17,8 @@ return {
       -- FIXME: return to original repo after PR is merged
       -- "marilari88/neotest-vitest",
       "JarmoCluyse/neotest-vitest",
+
+      "arthur944/neotest-bun",
       "Issafalcon/neotest-dotnet",
       "fredrikaverpil/neotest-golang",
     },
@@ -26,6 +28,8 @@ return {
           require("neotest-vitest")({
             -- vitestCommand = "npx vitest run",
           }),
+          require("neotest-bun")(),
+
           require("neotest-dotnet")({
             dap = {
               args = { justMyCode = false },
