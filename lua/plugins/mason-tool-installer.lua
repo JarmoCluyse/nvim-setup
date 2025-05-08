@@ -17,6 +17,7 @@ return {
       "cspell",
       "codespell",
       "gopls",
+      "lua_ls",
       "delve",
       "roslyn",
       "ts_ls",
