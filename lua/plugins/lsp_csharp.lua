@@ -5,36 +5,6 @@
 
 return {
   {
-    -- "iabdelkareem/csharp.nvim", -- temporary until PR is merged
-    "JarmoCluyse/csharp.nvim",
-    dependencies = {
-      "williamboman/mason.nvim", -- Required, automatically installs omnisharp
-      "mfussenegger/nvim-dap",
-      "Tastyep/structlog.nvim", -- Optional, but highly recommended for debugging
-      "seblyng/roslyn.nvim",
-    },
-    enabled = false,
-    lazy = true,
-    event = "VeryLazy",
-    config = function()
-      require("csharp").setup({
-        lsp = {
-          -- omnisharp = {
-          --   enable = false,
-          -- },
-          -- roslyn = {
-          --   enable = false,
-          -- },
-        },
-      })
-
-      local csharp = require("csharp")
-
-      vim.keymap.set("n", "<leader>nd", csharp.debug_project, { desc = ".NET Debug project" })
-      vim.keymap.set("n", "<leader>ne", csharp.run_project, { desc = ".NET Run project" })
-    end,
-  },
-  {
     "MoaidHathot/dotnet.nvim",
     branch = "dev",
     cmd = "DotnetUI",
