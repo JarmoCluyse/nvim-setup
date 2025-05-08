@@ -272,6 +272,21 @@ function M.debug_program()
 end
 
 function M.setup()
+  vim.api.nvim_create_user_command("RoslynUtils", function(opts)
+    local subcmd = opts.args
+    if subcmd == "start" then
+      M.start_program()
+    elseif subcmd == "debug" then
+      M.debug_program()
+    else
+      vim.notify("Unknown RoslynUtils subcommand: " .. subcmd, vim.log.levels.ERROR)
+    end
+  end, {
+    nargs = 1,
+    complete = function(_, _, _) return { "start", "debug" } end,
+    desc = "RoslynUtils commands",
+  })
+
   vim.keymap.set("n", "<leader>ne", M.start_program, { desc = "Start dotnet project" })
   vim.keymap.set("n", "<leader>nd", M.debug_program, { desc = "Debug dotnet project" })
 end
