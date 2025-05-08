@@ -74,7 +74,6 @@ local function get_launch_profiles(project)
     return {}
   end
 
-  --- @type DotNetLaunchProfile[]
   local profiles = {}
   for profile_name, profile in pairs(launch_settings.profiles) do
     if profile.commandName ~= "Project" then
@@ -105,7 +104,7 @@ local function select_launch_profile(project_folder)
 end
 
 --- @param options string[]?
-local function dotner_run(options)
+local function dotnet_run(options)
   local command = "dotnet run"
   if options then
     command = command .. " " .. table.concat(options, " ")
@@ -144,7 +143,32 @@ local function _start_program()
     opt = vim.list_extend(opt, { "--launch-profile", profile.name })
   end
 
-  dotner_run(opt)
+  dotnet_run(opt)
+end
+
+-- Register event handlers for DAP events to track what's happening
+local function attach_dap_event_listeners(dap)
+  dap.listeners.before["event_initialized"]["roslyn_debug"] = function(session, _)
+    vim.notify("DAP Session initialized: " .. vim.inspect(session.id), vim.log.levels.INFO)
+  end
+
+  dap.listeners.before["event_terminated"]["roslyn_debug"] = function(_, body)
+    vim.notify("DAP Session terminated: " .. vim.inspect(body), vim.log.levels.INFO)
+  end
+
+  dap.listeners.before["event_exited"]["roslyn_debug"] = function(_, body)
+    vim.notify("DAP Process exited with code: " .. vim.inspect(body.exitCode), vim.log.levels.INFO)
+  end
+
+  dap.listeners.before["event_output"]["roslyn_debug"] = function(_, body)
+    if body.category == "stderr" then
+      vim.notify("DAP Error: " .. body.output, vim.log.levels.ERROR)
+    end
+  end
+
+  dap.listeners.before["event_error"]["roslyn_debug"] = function(_, body)
+    vim.notify("DAP Error event: " .. vim.inspect(body), vim.log.levels.ERROR)
+  end
 end
 
 local function _debug_program()
@@ -157,25 +181,78 @@ local function _debug_program()
     vim.notify("No projects found", vim.log.levels.ERROR)
     return
   end
-  -- TODO: Select project
+
   local selected = select_sync(projects, {
     prompt = "Select project:",
   })
+
   -- get launch profiles
   local profile = select_launch_profile(selected)
 
-  local opt = {
-    "--project",
-    selected,
-    "-c",
-    "Debug",
-  }
+  -- Use dap for debugging
+  local dap = require("dap")
 
-  if profile then
-    opt = vim.list_extend(opt, { "--launch-profile", profile.name })
+  local project_folder = vim.fn.fnamemodify(selected, ":h")
+  local build_cmd = "dotnet build " .. selected .. " -c Debug"
+  local build_result = vim.fn.system(build_cmd)
+  vim.notify("Build result: " .. build_result, vim.log.levels.DEBUG)
+
+  -- Find the compiled dll
+  local dll_path
+  local project_name = vim.fn.fnamemodify(selected, ":t:r")
+  local dll_pattern = project_folder .. "/bin/Debug/*/" .. project_name .. ".dll"
+  local dll_files = vim.fn.glob(dll_pattern)
+
+  if dll_files ~= "" then
+    local dll_files_table = vim.split(dll_files, "\n")
+    dll_path = dll_files_table[1]
+
+    -- Check if the file actually exists
+    if vim.fn.filereadable(dll_path) == 1 then
+    else
+      vim.notify("DLL path is not readable: " .. dll_path, vim.log.levels.ERROR)
+      return nil
+    end
+  else
+    vim.notify("Could not find compiled DLL for " .. project_name, vim.log.levels.ERROR)
+    return nil
   end
 
-  dotner_run(opt)
+  local configuration = {
+    type = "coreclr",
+    name = "Debug .NET Core Launch",
+    request = "launch",
+    program = vim.fn.fnamemodify(dll_path, ":t"),
+    cwd = vim.fn.fnamemodify(dll_path, ":h"),
+    console = "integratedTerminal",
+    justMyCode = false, -- Try debugging with .NET source code included
+  }
+
+  -- Add launch profile settings if available
+  if profile then
+    vim.notify("Using launch profile: " .. profile.name, vim.log.levels.INFO)
+    if profile.applicationUrl then
+      configuration.env = configuration.env or {}
+      configuration.env.ASPNETCORE_URLS = profile.applicationUrl
+    end
+    -- Add any environment variables from the profile
+    if profile.environmentVariables then
+      configuration.env = configuration.env or {}
+      for key, value in pairs(profile.environmentVariables) do
+        configuration.env[key] = value
+      end
+    end
+  end
+
+  attach_dap_event_listeners(dap)
+
+  -- Start debugging with error handling
+  vim.notify("Starting DAP debugger session now...", vim.log.levels.INFO)
+  local status, err = pcall(function() dap.run(configuration) end)
+
+  if not status then
+    vim.notify("Error running debugger: " .. vim.inspect(err), vim.log.levels.ERROR)
+  end
 end
 
 function M.start_program()
@@ -196,7 +273,7 @@ end
 
 function M.setup()
   vim.keymap.set("n", "<leader>ne", M.start_program, { desc = "Start dotnet project" })
-  vim.keymap.set("n", "<leader>nd", M.start_program, { desc = "Debug dotnet project" })
+  vim.keymap.set("n", "<leader>nd", M.debug_program, { desc = "Debug dotnet project" })
 end
 
 return M
