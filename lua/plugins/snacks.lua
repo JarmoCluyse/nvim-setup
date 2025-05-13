@@ -38,18 +38,6 @@ return {
           height = 10,
         },
         { pane = 2, icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
-        {
-          pane = 2,
-          icon = " ",
-          title = "Git Status",
-          section = "terminal",
-          enabled = function() return Snacks.git.get_root() ~= nil end,
-          cmd = "git status --short --branch --renames",
-          height = 5,
-          padding = 1,
-          ttl = 5 * 60,
-          indent = 3,
-        },
         { section = "startup" },
       },
     },
@@ -58,6 +46,11 @@ return {
     notifier = {
       enabled = true,
       timeout = 3000,
+    },
+    lazygit = {
+      -- automatically configure lazygit to use the current colorscheme
+      -- and integrate edit with the current neovim instance
+      configure = false,
     },
     picker = { enabled = false },
     quickfile = { enabled = true },
@@ -73,31 +66,16 @@ return {
   keys = {
     ---@diagnostic disable: undefined-global
 
-    --- NOTE: ZEN
-    -- { "<leader>z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
-    -- { "<leader>Z",  function() Snacks.zen.zoom() end, desc = "Toggle Zoom" },
-
-    -- NOTE: scratch
-    -- { "<leader>.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
-    -- { "<leader>S",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
-
     --- NOTE: Messages
     { "<leader>mh", function() Snacks.notifier.show_history() end, desc = "Messages History" },
     { "<leader>md", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
 
-    -- { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete Buffer" },
-    -- { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File" },
-
     -- NOTE: lazygit
     { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse", mode = { "n", "v" } },
     { "<leader>gb", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
-    { "<leader>lgh", function() Snacks.lazygit.log_file() end, desc = "Lazygit Current File History" },
+    { "<leader>lh", function() Snacks.lazygit.log_file() end, desc = "Lazygit Current File History" },
+    { "<leader>ll", function() Snacks.lazygit.log() end, desc = "Lazygit Log (cwd)" },
     { "<leader>lg", function() Snacks.lazygit() end, desc = "Lazygit" },
-    { "<leader>lgl", function() Snacks.lazygit.log() end, desc = "Lazygit Log (cwd)" },
-
-    -- NOTE: terminal
-    -- { "<c-/>", function() Snacks.terminal() end, desc = "Toggle Terminal" },
-    -- { "<c-_>", function() Snacks.terminal() end, desc = "which_key_ignore" },
 
     -- NOTE: move treesitter
     { "]]", function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
@@ -145,7 +123,6 @@ return {
           .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
           :map("<leader>uc")
         Snacks.toggle.treesitter():map("<leader>uT")
-        -- Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>ub")
         Snacks.toggle.inlay_hints():map("<leader>uh")
         Snacks.toggle.indent():map("<leader>ug")
         Snacks.toggle.dim():map("<leader>uD")

@@ -20,6 +20,7 @@ return {
         "vim",
         "vimdoc",
         "jsdoc",
+        "typescript",
         "go",
       },
       -- Autoinstall languages that are not installed

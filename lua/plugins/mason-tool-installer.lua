@@ -21,7 +21,6 @@ return {
       "delve",
       "roslyn",
       "ts_ls",
-      -- "omnisharp",
       "csharpier",
     })
     require("mason-tool-installer").setup({
