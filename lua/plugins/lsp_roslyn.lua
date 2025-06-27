@@ -6,7 +6,6 @@ return {
   ft = "cs",
   config = function()
     require("roslyn").setup({
-      config = {},
       broad_search = true,
     })
     -- create commands
