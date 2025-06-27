@@ -13,6 +13,19 @@ function M.setup()
   -- local d = ls.dynamic_node
   -- local r = ls.restore_node
 
+  ls.add_snippets("scss", {
+    -- display flex
+    s("df", {
+      t("display: flex;"),
+    }),
+  })
+  ls.add_snippets("css", {
+    -- display flex
+    s("df", {
+      t("display: flex;"),
+    }),
+  })
+
   ls.add_snippets("typescriptreact", {
 
     -- className
