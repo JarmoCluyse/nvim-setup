@@ -28,6 +28,11 @@ opt.inccommand = "split"
 opt.cursorline = true
 opt.scrolloff = 10
 
+-- Set tab width to 2 spaces and use spaces instead of tabs
+opt.tabstop = 4 -- Number of visual spaces per TAB
+opt.shiftwidth = 2 -- Number of spaces for each indentation
+opt.expandtab = true -- Convert tabs to spaces
+
 -- NOTE: [[ Windows specific options ]]
 --
 ---@diagnostic disable-next-line: undefined-field
