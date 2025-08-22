@@ -16,11 +16,13 @@ return {
       "eslint",
       "cspell",
       "codespell",
+      "tailwindcss-language-server",
       "gopls",
       "lua_ls",
       "delve",
       "roslyn",
       "ts_ls",
+      "templ",
       "csharpier",
     })
     require("mason-tool-installer").setup({
