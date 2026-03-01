@@ -11,8 +11,6 @@ local find_folders = function()
 end
 
 --- Setup function to map the keybinding for finding folders.
-M.setup = function()
-  vim.keymap.set("n", "<leader>sa", find_folders, { desc = "[S]earch [A]folders" })
-end
+M.setup = function() vim.keymap.set("n", "<leader>sa", find_folders, { desc = "[S]earch [A]folders" }) end
 
 return M

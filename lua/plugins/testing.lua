@@ -12,7 +12,6 @@ return {
       "uga-rosa/utf8.nvim",
       "nvim-neotest/nvim-nio",
       "nvim-lua/plenary.nvim",
-      "antoinemadec/FixCursorHold.nvim",
       "nvim-treesitter/nvim-treesitter",
       -- FIXME: return to original repo after PR is merged
       -- "marilari88/neotest-vitest",

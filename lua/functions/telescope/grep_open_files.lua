@@ -10,8 +10,6 @@ local grep_open_files = function()
 end
 
 --- Setup function to map the keybinding for live grep search in open files.
-M.setup = function()
-  vim.keymap.set("n", "<leader>s/", grep_open_files, { desc = "[S]earch [/] in Open Files" })
-end
+M.setup = function() vim.keymap.set("n", "<leader>s/", grep_open_files, { desc = "[S]earch [/] in Open Files" }) end
 
 return M

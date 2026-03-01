@@ -2,18 +2,16 @@
 -- this is the status line at the bottom of the editor
 
 ---@diagnostic disable: undefined-field
--- cspell:ignore lualine gitblame devicons noice worktree fileformat
+-- cspell:ignore lualine gitblame devicons worktree fileformat
 
 return {
   "nvim-lualine/lualine.nvim",
   dependencies = {
     "nvim-tree/nvim-web-devicons",
-    "folke/noice.nvim",
   },
   config = function()
     vim.g.gitblame_display_virtual_text = 0
     local git_utils = require("functions.git-utils")
-    local noice_status = require("noice").api.status
 
     require("lualine").setup({
       options = {
@@ -37,21 +35,6 @@ return {
         },
         lualine_x = {
           "diagnostics",
-          {
-            noice_status.mode.get,
-            cond = noice_status.mode.has,
-            color = { fg = "#ff9e64" },
-          },
-          {
-            noice_status.search.get,
-            cond = noice_status.search.has,
-            color = { fg = "#ff9e64" },
-          },
-          {
-            noice_status.command.get,
-            cond = noice_status.command.has,
-            color = { fg = "#ff9e64" },
-          },
         },
         lualine_y = { "filetype", "encoding", "fileformat" },
         lualine_z = { "location" },

@@ -31,7 +31,6 @@ return {
       "MunifTanjim/nui.nvim",
       "nvim-telescope/telescope.nvim",
       "hrsh7th/nvim-cmp",
-      "ibhagwan/fzf-lua", -- for file_selector provider fzf
       "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
       "zbirenbaum/copilot.lua", -- for providers='copilot'
       {

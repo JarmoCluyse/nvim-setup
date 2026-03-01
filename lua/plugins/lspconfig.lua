@@ -84,22 +84,6 @@ return {
             enableProfileLoading = false,
           },
         },
-        -- omnisharp = {
-        --   settings = {
-        --     FormattingOptions = {
-        --       EnableEditorConfigSupport = true,
-        --     },
-        --     RoslynExtensionsOptions = {
-        --       -- Enables support for roslyn analyzers, code fixes and rulesets.
-        --       EnableAnalyzersSupport = true,
-        --       EnableImportCompletion = true,
-        --       AnalyzeOpenDocumentsOnly = nil,
-        --     },
-        --     Sdk = {
-        --       IncludePrereleases = true,
-        --     },
-        --   },
-        -- },
       }
 
       require("mason-lspconfig").setup({

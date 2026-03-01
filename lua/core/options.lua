@@ -1,45 +1,41 @@
--- NOTE: Global nvim options
-
 -- cspell:ignore relativenumber showmode breakindent undofile ignorecase smartcase signcolumn updatetime timeoutlen splitright splitbelow list listchars inccommand cursorline scrolloff unnamedplus
 
-local opt = vim.opt
+-- NOTE: Global nvim options
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+vim.g.have_nerd_font = true
 
-opt.number = true
-opt.relativenumber = true
-opt.mouse = "a"
-opt.showmode = false
-opt.wrap = false
+-- NOTE: General settings
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.mouse = "a"
+vim.opt.showmode = false
+vim.opt.wrap = false
 
--- sync clipboard with system clipboard
--- vim.schedule(function() vim.opt.clipboard = "unnamedplus" end)
+-- NOTE: UI settings
+vim.opt.breakindent = true
+vim.opt.undofile = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.signcolumn = "yes"
+vim.opt.updatetime = 50
+vim.opt.timeoutlen = 300
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+vim.opt.list = true
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.opt.inccommand = "split"
+vim.opt.cursorline = true
+vim.opt.scrolloff = 8
 
-opt.breakindent = true
-opt.undofile = true
-opt.ignorecase = true
-opt.smartcase = true
-opt.signcolumn = "yes"
-opt.updatetime = 50
-opt.timeoutlen = 300
-opt.splitright = true
-opt.splitbelow = true
-opt.list = true
-opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
-opt.inccommand = "split"
-opt.cursorline = true
-opt.scrolloff = 10
-
--- Set tab width to 2 spaces and use spaces instead of tabs
-opt.tabstop = 4 -- Number of visual spaces per TAB
-opt.shiftwidth = 2 -- Number of spaces for each indentation
-opt.expandtab = true -- Convert tabs to spaces
+-- NOTE: Indentation settings
+vim.opt.tabstop = 4 -- Number of visual spaces per TAB
+vim.opt.shiftwidth = 2 -- Number of spaces for each indentation
+vim.opt.expandtab = true -- Convert tabs to spaces
 
 -- NOTE: [[ Windows specific options ]]
---
----@diagnostic disable-next-line: undefined-field
-local isWindows = vim.loop.os_uname().sysname:find("Windows") and true or false
-
-if isWindows then
-  opt.shell = "pwsh"
+if IsWindows then
+  vim.opt.shell = "pwsh"
   vim.opt.shellcmdflag = "-nologo -noprofile -ExecutionPolicy RemoteSigned -command"
   vim.opt.shellxquote = ""
 end

@@ -10,8 +10,6 @@ local find_config_files = function()
 end
 
 --- Setup function to map the keybinding for finding Neovim configuration files.
-M.setup = function()
-  vim.keymap.set("n", "<leader>sn", find_config_files, { desc = "[S]earch [N]eovim files" })
-end
+M.setup = function() vim.keymap.set("n", "<leader>sn", find_config_files, { desc = "[S]earch [N]eovim files" }) end
 
 return M
