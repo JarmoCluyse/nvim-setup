@@ -41,7 +41,7 @@ vim.keymap.set("x", "<Tab>", ">gv", { desc = "Shift right" })
 vim.keymap.set("x", "<S-Tab>", "<gv", { desc = "Shift left" })
 
 -- INFO: Yank full path to clipboard
-vim.keymap.set("n", "<leader>ca", function()
+vim.keymap.set("n", "<leader>cd", function()
   local path = vim.fn.expand("%:p")
   vim.fn.setreg("+", path)
 end, { desc = "Yank full path to clipboard" })
