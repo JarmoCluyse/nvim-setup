@@ -8,19 +8,27 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   config = function()
     local conform = require("conform")
+
+    local function biome_or_prettier(bufnr)
+      if conform.get_formatter_info("biome", bufnr).available then
+        return { "biome-organize-imports", "biome" }
+      end
+      return { "prettier" }
+    end
+
     conform.setup({
       formatters_by_ft = {
         cs = { "csharpier" },
-        javascript = { "prettier" },
-        typescript = { "prettier" },
-        javascriptreact = { "prettier" },
-        typescriptreact = { "prettier" },
+        javascript = biome_or_prettier,
+        typescript = biome_or_prettier,
+        javascriptreact = biome_or_prettier,
+        typescriptreact = biome_or_prettier,
         svelte = { "prettier" },
         css = { "prettier" },
         scss = { "prettier" },
         html = { "prettier" },
-        json = { "prettier" },
-        jsonc = { "prettier" },
+        json = biome_or_prettier,
+        jsonc = biome_or_prettier,
         yaml = { "prettier" },
         markdown = { "prettier" },
         graphql = { "prettier" },
@@ -28,6 +36,19 @@ return {
         lua = { "stylua" },
       },
       formatters = {
+        ["biome-organize-imports"] = {
+          require_cwd = true,
+        },
+        biome = {
+          require_cwd = true,
+          args = function(self, ctx)
+            local cwd = self:cwd(ctx)
+            if cwd then
+              return { "format", "--config-path", cwd, "--stdin-file-path", "$FILENAME" }
+            end
+            return { "format", "--stdin-file-path", "$FILENAME" }
+          end,
+        },
         csharpier = function()
           local useDotnet = not vim.fn.executable("csharpier")
           local command = useDotnet and "dotnet csharpier" or "csharpier"
