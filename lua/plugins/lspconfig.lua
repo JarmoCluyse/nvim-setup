@@ -57,6 +57,7 @@ return {
             })
           end
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+            vim.lsp.inlay_hint.enable(true, { bufnr = event.buf }) -- cspell:disable-line
             map("<leader>th", function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })) -- cspell:disable-line
             end, "[T]oggle Inlay [H]ints") -- cspell:disable-line
@@ -67,6 +68,9 @@ return {
       capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
       local servers = {
+        sqruff = {
+          root_markers = { '.sqruff' },
+        },
         lua_ls = {
           settings = {
             Lua = {
