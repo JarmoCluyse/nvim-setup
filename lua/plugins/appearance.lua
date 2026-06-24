@@ -47,6 +47,13 @@ return {
       local hint_fg = "#BEBDB8"
       local hint_bg = "#3E3D39"
 
+      -- #region sign + line foreground (used by nvim-ufo region highlighting)
+      -- UfoRegionSign: ▶/◀ glyph next to the line number, like diagnostics
+      -- UfoRegionLine: recolors the entire line text to lavender
+      vim.api.nvim_set_hl(0, "UfoRegionSign", { fg = "#b4befe" })        -- catppuccin lavender
+      vim.api.nvim_set_hl(0, "UfoRegionLine", { fg = "#b4befe" })
+      vim.api.nvim_set_hl(0, "UfoRegionVirt", { fg = "#b4befe" })
+
       vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { fg = hint_fg, bg = hint_bg })
       vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { fg = info_fg, bg = info_bg })
       vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { fg = warn_fg, bg = warn_bg })
