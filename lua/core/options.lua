@@ -27,6 +27,7 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 vim.opt.scrolloff = 8
+vim.opt.colorcolumn = "80"
 
 -- NOTE: Indentation settings
 vim.opt.tabstop = 4 -- Number of visual spaces per TAB
