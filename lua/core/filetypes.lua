@@ -10,6 +10,7 @@ vim.filetype.add({
     log = "log",
     conf = "conf",
     env = "bash",
+    sqruff = "toml",
   },
   -- Detect and apply filetypes based on the entire filename
   filename = {
