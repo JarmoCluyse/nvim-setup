@@ -9,7 +9,24 @@ return {
     "nvim-treesitter/nvim-treesitter",
   },
   config = function()
-    require("go").setup()
+    require("go").setup({
+      lsp_cfg = {
+        settings = {
+          gopls = {
+            hints = {
+              assignVariableTypes = true,
+              compositeLiteralFields = true,
+              compositeLiteralTypes = true,
+              constantValues = true,
+              functionTypeParameters = true,
+              ignoredError = true,
+              parameterNames = true,
+              rangeVariableTypes = true,
+            },
+          },
+        },
+      },
+    })
   end,
   lazy = true,
   event = { "CmdlineEnter" },
