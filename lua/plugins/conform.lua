@@ -29,6 +29,7 @@ return {
         html = { "prettier" },
         json = biome_or_prettier,
         jsonc = biome_or_prettier,
+        svg = biome_or_prettier,
         yaml = { "prettier" },
         markdown = { "prettier" },
         graphql = { "prettier" },

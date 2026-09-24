@@ -21,7 +21,7 @@ return {
       "lua_ls",
       "delve",
       "roslyn",
-      "ts_ls",
+      "vtsls",
       "templ",
       "csharpier",
     })
